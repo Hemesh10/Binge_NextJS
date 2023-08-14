@@ -23,8 +23,6 @@ const IndividualTV = ({ params }) => {
   const [modal, setModal] = useState(false);
 
   console.log(IndividualTVData);
-
-  //TODO fix this (make it responsive)
   return (
     <>
       {Object.keys(IndividualTVData).length > 0 ? (

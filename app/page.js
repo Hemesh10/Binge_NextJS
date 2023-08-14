@@ -183,5 +183,3 @@ export default function Home() {
     </main>
   );
 }
-
-//api_key=6bd862bb6372fb6e6174ebc27cc7d8e2

@@ -26,9 +26,7 @@ const IndividualMovie = ({ params }) => {
 
   const [modal, setModal] = useState(false);
 
-  console.log(IndividualMovieData);
-
-  //TODO fix this (make it responsive)
+  // console.log(IndividualMovieData);
 
   return (
     <>
@@ -149,18 +147,6 @@ const IndividualMovie = ({ params }) => {
                     </div>
                   </div>
                 ) : null}
-                {/* <div className="creators flex gap-12 mt-2">
-                  {IndividualMovieData.created_by.map((elem) => {
-                    return (
-                      <div className="creator">
-                        <h1 className="text-base font-bold leading-none">
-                          {elem.name}
-                        </h1>
-                        <p className="text-sm">Creator</p>
-                      </div>
-                    );
-                  })}
-                </div> */}
               </div>
             </div>
           </section>
@@ -244,25 +230,6 @@ const IndividualMovie = ({ params }) => {
                 <h1 className="text-base font-semibold">Status</h1>
                 <p>{IndividualMovieData.status}</p>
               </div>
-              {/* {IndividualMovieData.networks.length > 0 ? (
-                <>
-                  <h1 className="text-base font-semibold leading-none">
-                    Network
-                  </h1>
-                  <ul className="networks flex flex-col gap-1 -mt-2">
-                    {IndividualMovieData.networks.map((elem) => {
-                      return (
-                        <li key={elem.id}>
-                          <img
-                            src={`https://www.themoviedb.org/t/p/h30${elem.logo_path}`}
-                            alt=""
-                          />
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </>
-              ) : null} */}
               <div className="og-lang leading-none">
                 <h1 className="text-base font-semibold">Original Language</h1>
                 {IndividualMovieData.original_language === "en" ? (
@@ -287,14 +254,6 @@ const IndividualMovie = ({ params }) => {
                   <p className="opacity-80">NA</p>
                 )}
               </div>
-              {/* <div className="type leading-none">
-                <h1 className="text-base font-semibold">Type</h1>
-                {IndividualMovieData.type ? (
-                  <p>{IndividualMovieData.type}</p>
-                ) : (
-                  <p>NA</p>
-                )}
-              </div> */}
             </div>
           </section>
         </section>
@@ -309,15 +268,3 @@ const IndividualMovie = ({ params }) => {
 
 export default IndividualMovie;
 
-// adult: false;
-// cast_id: 705;
-// character: "Miles Morales / Spider-Man (voice)";
-// credit_id: "6489a4f8e375c000e251ab48";
-// gender: 2;
-// id: 587506;
-// known_for_department: "Acting";
-// name: "Shameik Moore";
-// order: 0;
-// original_name: "Shameik Moore";
-// popularity: 11.809;
-// profile_path: "/uJNaSTsfBOvtFWsPP23zNthknsB.jpg";

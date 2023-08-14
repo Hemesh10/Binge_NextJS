@@ -4,8 +4,6 @@ import Link from "next/link";
 import { CircularProgress } from "@mui/material";
 import { Card, CardHeader, CardFooter } from "./ui/card";
 
-//build an image card withusing above import
-
 const HomePageCard = ({ elem }) => {
   return (
     <Card
@@ -17,8 +15,9 @@ const HomePageCard = ({ elem }) => {
           <Image
             src={`https://www.themoviedb.org/t/p/original/${elem.poster_path}`}
             alt="Profile Image"
+            priority
             layout="fill"
-            sizes="(min-width: 768px) 15vw"
+            // sizes="(min-width: 768px) 15vw"
             className="object-cover object-center transition-all hover:scale-105"
           />
         </CardHeader>

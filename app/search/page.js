@@ -55,5 +55,3 @@ const SearchResultsPage = ({ searchParams }) => {
 };
 
 export default SearchResultsPage;
-
-// /z7uo9zmQdQwU5ZJHFpv2Upl30i1.jpg
