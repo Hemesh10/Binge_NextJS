@@ -63,6 +63,9 @@ export default function Home() {
   // console.log("This is the free movies data : ", FreeMoviesData);
   // console.log("This is the free TV data : ", FreeTVData);
 
+  //TODO Images Optimization
+  //TODO Getting average/domain color of an image
+
   return (
     <main className="min-h-[100vh] w-full 2xl:px-28 xl:px-24">
       <section className="welcome-poster relative w-full">
@@ -126,7 +129,11 @@ export default function Home() {
                 <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
                   {trendingTodayData.length > 0 ? (
                     trendingTodayData.map((elem) => {
-                      return <HomePageCard elem={elem} />;
+                      return (
+                        <div key={elem.id} className="card-wrapper">
+                          <HomePageCard elem={elem} />
+                        </div>
+                      );
                     })
                   ) : (
                     <LoadingSkeleton cards={8} heigth={250} width={180} />
@@ -137,7 +144,11 @@ export default function Home() {
                 <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
                   {trendingWeeklyData.length > 0 &&
                     trendingWeeklyData.map((elem) => {
-                      return <HomePageCard elem={elem} />;
+                      return (
+                        <div key={elem.id} className="card-wrapper">
+                          <HomePageCard elem={elem} />
+                        </div>
+                      );
                     })}
                 </div>
               </TabsContent>
@@ -160,7 +171,11 @@ export default function Home() {
                 <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
                   {FreeMoviesData.length > 0 ? (
                     FreeMoviesData.map((elem) => {
-                      return <HomePageCard elem={elem} />;
+                      return (
+                        <div key={elem.id} className="card-wrapper">
+                          <HomePageCard elem={elem} />
+                        </div>
+                      );
                     })
                   ) : (
                     <LoadingSkeleton cards={8} heigth={250} width={180} />
@@ -172,7 +187,11 @@ export default function Home() {
                 <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
                   {FreeTVData.length > 0 &&
                     FreeTVData.map((elem) => {
-                      return <HomePageCard elem={elem} />;
+                      return (
+                        <div key={elem.id} className="card-wrapper">
+                          <HomePageCard elem={elem} />
+                        </div>
+                      );
                     })}
                 </div>
               </TabsContent>

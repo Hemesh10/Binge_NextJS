@@ -22,7 +22,7 @@ const IndividualTV = ({ params }) => {
 
   const [modal, setModal] = useState(false);
 
-  console.log(IndividualTVData);
+  // console.log(IndividualTVData);
   return (
     <>
       {Object.keys(IndividualTVData).length > 0 ? (
@@ -32,17 +32,18 @@ const IndividualTV = ({ params }) => {
               src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces//${IndividualTVData.backdrop_path}`}
               alt="Backdrop Poster"
               layout="fill"
+              sizes="(min-width: 640px) 75vw"
               className="object-cover"
               priority
             />
             <div className="backdrop-cover absolute top-0 w-full h-full bg-black opacity-50"></div>
-            <div className="details-and-poster flex items-center absolute z-10 top-0 w-full h-full pl-32">
+            <div className="details-and-poster flex items-center absolute z-10 top-0 w-full h-full 2xl:pl-36 xl:pl-24 lg:pl-16 pl-6">
               <div className="poster relative w-[19rem] h-[85%] rounded-lg overflow-hidden">
                 <Image
                   src={`https://www.themoviedb.org/t/p/original/${IndividualTVData.poster_path}`}
                   alt="Poster"
                   layout="fill"
-                  // sizes="(min-width: 200px) 40vw"
+                  sizes="(min-width: 640px) 40vw"
                   className="object-cover object-center"
                   priority
                 />

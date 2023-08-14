@@ -17,7 +17,7 @@ const HomePageCard = ({ elem }) => {
             alt="Profile Image"
             priority
             layout="fill"
-            // sizes="(min-width: 768px) 15vw"
+            sizes="(min-width: 640px) 25vw"
             className="object-cover object-center transition-all hover:scale-105"
           />
         </CardHeader>

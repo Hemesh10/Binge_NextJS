@@ -37,6 +37,7 @@ const IndividualMovie = ({ params }) => {
               src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces//${IndividualMovieData.backdrop_path}`}
               alt="Backdrop Poster"
               layout="fill"
+              sizes="(min-width: 640px) 75vw"
               className="object-cover"
               priority
             />
@@ -47,7 +48,7 @@ const IndividualMovie = ({ params }) => {
                   src={`https://www.themoviedb.org/t/p/original/${IndividualMovieData.poster_path}`}
                   alt="Poster"
                   layout="fill"
-                  // sizes="(min-width: 200px) 40vw"
+                  sizes="(min-width: 640px) 40vw"
                   className="object-cover object-center"
                   priority
                 />
@@ -267,4 +268,3 @@ const IndividualMovie = ({ params }) => {
 };
 
 export default IndividualMovie;
-
