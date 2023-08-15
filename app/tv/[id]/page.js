@@ -1,6 +1,12 @@
 "use client";
-import { asyncIndividualTV } from "@/store/Actions/TVActions/IndividualTV/IndividualTVActions";
-import { asyncIndividualTVCastAndCrew } from "@/store/Actions/TVActions/IndividualTV/IndividualTVActions";
+// import { asyncIndividualTV } from "@/store/Actions/TVActions/IndividualTV/IndividualTVActions";
+// import { asyncIndividualTVCastAndCrew } from "@/store/Actions/TVActions/IndividualTV/IndividualTVActions";
+import {
+  asyncIndividualTV,
+  asyncIndividualTVCastAndCrew,
+  individualTV,
+  TV_CastAndCrew,
+} from "@/store/Actions/index";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
@@ -18,6 +24,11 @@ const IndividualTV = ({ params }) => {
   useEffect(() => {
     dispatch(asyncIndividualTV(params.id));
     dispatch(asyncIndividualTVCastAndCrew(params.id));
+
+    return () => {
+      dispatch(individualTV([]));
+      dispatch(TV_CastAndCrew([]));
+    };
   }, []);
 
   const [modal, setModal] = useState(false);

@@ -1,5 +1,6 @@
 "use client";
-import { asyncNowPlayingMovies } from "@/store/Actions/MoviesActions/NowPlayingMovies/NowPlayingMoviesAction";
+// import { asyncNowPlayingMovies } from "@/store/Actions/MoviesActions/NowPlayingMovies/NowPlayingMoviesAction";
+import { asyncNowPlayingMovies } from "@/store/Actions/index"
 import { changePage } from "@/store/Reducers/MoviesReducers/NowPlayingMovies/NowPlayingMoviesReducers";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";

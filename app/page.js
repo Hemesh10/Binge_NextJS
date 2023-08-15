@@ -1,20 +1,27 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// import {
+//   asyncTrendingToday,
+//   asyncTrendingWeekly,
+// } from "@/store/Actions/Homepage/Trending/TrendingActions";
+// import {
+//   remove_todayError,
+//   remove_weeklyError,
+// } from "@/store/Reducers/HomePage/Trending/TrendingReducer";
+// import { asyncFreeMovies } from "@/store/Actions/Homepage/Free/Movies/FreeMoviesActions";
+// import { asyncFreeTV } from "@/store/Actions/Homepage/Free/TV/FreeTVActions";
 import {
   asyncTrendingToday,
   asyncTrendingWeekly,
-} from "@/store/Actions/Homepage/Trending/TrendingActions";
-import {
+  asyncFreeMovies,
+  asyncFreeTV,
   remove_todayError,
   remove_weeklyError,
-} from "@/store/Reducers/HomePage/Trending/TrendingReducer";
-import { asyncFreeMovies } from "@/store/Actions/Homepage/Free/Movies/FreeMoviesActions";
-import { asyncFreeTV } from "@/store/Actions/Homepage/Free/TV/FreeTVActions";
+} from "@/store/Actions/index";
 import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-// import Link from "next/link";
 import Image from "next/image";
 import HomePageCard from "@/components/HomePageCard";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
@@ -39,7 +46,7 @@ export default function Home() {
     if (event.target.search_q.value.length > 0) {
       router.push(`/search?query=${event.target.search_q.value}`);
     } else {
-      toast.warn("Kuch type ko krlo pehle 🙂");
+      toast.warn("Kuch type to krlo pehle 🙂");
     }
   };
 

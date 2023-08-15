@@ -1,6 +1,16 @@
 "use client";
-import { asyncIndividualMovie } from "@/store/Actions/MoviesActions/IndividualMovie/IndividualMovieActions";
-import { asyncIndividualMovieCastAndCrew } from "@/store/Actions/MoviesActions/IndividualMovie/IndividualMovieActions";
+// import { asyncIndividualMovie } from "@/store/Actions/MoviesActions/IndividualMovie/IndividualMovieActions";
+// import { asyncIndividualMovieCastAndCrew } from "@/store/Actions/MoviesActions/IndividualMovie/IndividualMovieActions";
+// import {
+//   individualMovie,
+//   castAndCrew,
+// } from "@/store/Reducers/MoviesReducers/IndividualMovie/IndividualMovieReducer";
+import {
+  asyncIndividualMovie,
+  asyncIndividualMovieCastAndCrew,
+  individualMovie,
+  Movies_CastAndCarew
+} from "@/store/Actions/index";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 // import { Progress } from "@/components/ui/progress";
@@ -22,6 +32,11 @@ const IndividualMovie = ({ params }) => {
   useEffect(() => {
     dispatch(asyncIndividualMovie(params.id));
     dispatch(asyncIndividualMovieCastAndCrew(params.id));
+
+    return () => {
+      dispatch(individualMovie([]));
+      dispatch(Movies_CastAndCarew([]));
+    };
   }, []);
 
   const [modal, setModal] = useState(false);

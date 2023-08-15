@@ -1,5 +1,6 @@
 "use client";
-import { asyncPopularTV } from "@/store/Actions/TVActions/PopularTV/PopularTVActions";
+// import { asyncPopularTV } from "@/store/Actions/TVActions/PopularTV/PopularTVActions";
+import { asyncPopularTV} from "@/store/Actions/index"
 import { changePage } from "@/store/Reducers/TVReducers/PopularTV/PopularTVReducers";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";

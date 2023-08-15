@@ -1,5 +1,6 @@
 "use client";
-import { asyncOnAirTV } from "@/store/Actions/TVActions/OnTheAirTV/OnTheAirTVActions";
+// import { asyncOnAirTV } from "@/store/Actions/TVActions/OnTheAirTV/OnTheAirTVActions";
+import { asyncOnAirTV} from "@/store/Actions/index"
 import { changePage } from "@/store/Reducers/TVReducers/OnTheAirTV/OnTheAirTVReducers";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
