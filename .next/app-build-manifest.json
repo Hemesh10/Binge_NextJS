@@ -1,5 +1,10 @@
 {
   "pages": {
+    "/movie/popular/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/movie/popular/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -12,11 +17,25 @@
       "static/css/app/movie/[id]/page.css",
       "static/chunks/app/movie/[id]/page.js"
     ],
-    "/page": [
+    "/movie/top-rated/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/chunks/app/movie/top-rated/page.js"
+    ],
+    "/tv/on-the-air/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/tv/on-the-air/page.js"
+    ],
+    "/movie/upcoming/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/movie/upcoming/page.js"
+    ],
+    "/tv/airing-today/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/tv/airing-today/page.js"
     ],
     "/tv/top-rated/page": [
       "static/chunks/webpack.js",
@@ -29,10 +48,16 @@
       "static/css/app/tv/[id]/page.css",
       "static/chunks/app/tv/[id]/page.js"
     ],
-    "/search/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/search/page.js"
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
+    "/movie/now-playing/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/movie/now-playing/page.js"
     ]
   }
 }

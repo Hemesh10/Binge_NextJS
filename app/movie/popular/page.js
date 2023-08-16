@@ -7,14 +7,14 @@ import { useEffect } from "react";
 import RoutePage from "@/components/RoutePage";
 
 const PopularMoviesPage = () => {
-  const { PopularMoviesData, PopularMoviesActivePage } = useSelector(
+  const { PopularMoviesData, PopularMoviesActivePage, sort_by } = useSelector(
     (state) => state.PopularMoviesReducer
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncPopularMovies(PopularMoviesActivePage));
-  }, [PopularMoviesActivePage]);
+    dispatch(asyncPopularMovies(PopularMoviesActivePage, sort_by));
+  }, [PopularMoviesActivePage, sort_by]);
 
   return (
     <RoutePage

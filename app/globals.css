@@ -120,8 +120,12 @@ body ::-webkit-scrollbar-thumb {
   border-radius: 15px;
 }
 
-.backdrop-poster {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: left calc((50vw - 170px) - 340px) top;
+.backdrop-poster .backdrop-cover {
+  background: rgb(3, 37, 65);
+  background: linear-gradient(
+    90deg,
+    rgba(3, 37, 65, 1) 0%,
+    rgba(9, 9, 121, 1) 20%,
+    rgba(24, 170, 232, 1) 100%
+  );
 }
