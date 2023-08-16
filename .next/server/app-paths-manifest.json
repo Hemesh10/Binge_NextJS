@@ -1,7 +1,4 @@
 {
   "/page": "app/page.js",
-  "/movie/top-rated/page": "app/movie/top-rated/page.js",
-  "/movie/[id]/page": "app/movie/[id]/page.js",
-  "/movie/now-playing/page": "app/movie/now-playing/page.js",
-  "/tv/[id]/page": "app/tv/[id]/page.js"
+  "/movie/[id]/page": "app/movie/[id]/page.js"
 }

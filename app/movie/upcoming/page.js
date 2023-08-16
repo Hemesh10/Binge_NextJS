@@ -1,5 +1,4 @@
 "use client";
-// import { asyncUpcomingMovies } from "@/store/Actions/MoviesActions/UpcomingMovies/UpcomingMoviesActions";
 import { asyncUpcomingMovies } from "@/store/Actions/index";
 import { changePage } from "@/store/Reducers/MoviesReducers/UpcamingMovies/UpcomingMoviesReducers";
 import { useSelector, useDispatch } from "react-redux";

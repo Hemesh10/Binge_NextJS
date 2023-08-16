@@ -1,5 +1,4 @@
 "use client";
-// import { asyncTopRatedTV } from "@/store/Actions/TVActions/TopRatedTV/TopRatedTVActions";
 import { asyncTopRatedTV} from "@/store/Actions/index"
 import { changePage } from "@/store/Reducers/TVReducers/TopRatedTV/TopRatedTVReducers";
 import { useDispatch, useSelector } from "react-redux";

@@ -21,17 +21,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning className="w-full h-full">
-          <ReduxProvider>
-            <Navbar />
-            {children}
-            <ToastContainer />
-            <ProgressBar
+        <ReduxProvider>
+          <Navbar />
+          {children}
+          <ToastContainer />
+          <ProgressBar
               height="2.5px"
               color="#1CABE7"
               options={{ showSpinner: false }}
               shallowRouting
             />
-          </ReduxProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

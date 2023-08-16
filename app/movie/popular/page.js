@@ -1,5 +1,4 @@
 "use client";
-// import { asyncPopularMovies } from "@/store/Actions/MoviesActions/PopularMovies/PopularMoviesActions";
 import { asyncPopularMovies } from "@/store/Actions/index";
 import { changePage } from "@/store/Reducers/MoviesReducers/PopularMovies/PopularMoviesReducer";
 import { useSelector, useDispatch } from "react-redux";

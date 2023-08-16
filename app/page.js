@@ -1,16 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   asyncTrendingToday,
-//   asyncTrendingWeekly,
-// } from "@/store/Actions/Homepage/Trending/TrendingActions";
-// import {
-//   remove_todayError,
-//   remove_weeklyError,
-// } from "@/store/Reducers/HomePage/Trending/TrendingReducer";
-// import { asyncFreeMovies } from "@/store/Actions/Homepage/Free/Movies/FreeMoviesActions";
-// import { asyncFreeTV } from "@/store/Actions/Homepage/Free/TV/FreeTVActions";
 import {
   asyncTrendingToday,
   asyncTrendingWeekly,
@@ -25,6 +15,7 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import HomePageCard from "@/components/HomePageCard";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -149,14 +140,17 @@ export default function Home() {
               </TabsContent>
               <TabsContent value="weekly">
                 <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
-                  {trendingWeeklyData.length > 0 &&
+                  {trendingWeeklyData.length > 0 ? (
                     trendingWeeklyData.map((elem) => {
                       return (
                         <div key={elem.id} className="card-wrapper">
                           <HomePageCard elem={elem} />
                         </div>
                       );
-                    })}
+                    })
+                  ) : (
+                    <LoadingSkeleton cards={8} heigth={250} width={180} />
+                  )}
                 </div>
               </TabsContent>
             </div>
@@ -192,14 +186,17 @@ export default function Home() {
               </TabsContent>
               <TabsContent value="free-tv">
                 <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
-                  {FreeTVData.length > 0 &&
+                  {FreeTVData.length > 0 ? (
                     FreeTVData.map((elem) => {
                       return (
                         <div key={elem.id} className="card-wrapper">
                           <HomePageCard elem={elem} />
                         </div>
                       );
-                    })}
+                    })
+                  ) : (
+                    <LoadingSkeleton cards={8} heigth={250} width={180} />
+                  )}
                 </div>
               </TabsContent>
             </div>

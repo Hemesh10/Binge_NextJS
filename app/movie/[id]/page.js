@@ -1,10 +1,4 @@
 "use client";
-// import { asyncIndividualMovie } from "@/store/Actions/MoviesActions/IndividualMovie/IndividualMovieActions";
-// import { asyncIndividualMovieCastAndCrew } from "@/store/Actions/MoviesActions/IndividualMovie/IndividualMovieActions";
-// import {
-//   individualMovie,
-//   castAndCrew,
-// } from "@/store/Reducers/MoviesReducers/IndividualMovie/IndividualMovieReducer";
 import {
   asyncIndividualMovie,
   asyncIndividualMovieCastAndCrew,
@@ -13,7 +7,6 @@ import {
 } from "@/store/Actions/index";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-// import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { CircularProgress } from "@mui/material";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -181,13 +174,13 @@ const IndividualMovie = ({ params }) => {
                         key={index}
                         className="lg:w-[180px] md:w-[180px] sm:w-[180px] max-h-[22rem] flex-shrink-0"
                       >
-                        <CardHeader className="lg:h-64 relative overflow-hidden">
+                        <CardHeader className="lg:h-64 h-60 relative overflow-hidden">
                           {elem.profile_path ? (
                             <Image
                               src={`https://www.themoviedb.org/t/p/original/${elem.profile_path}`}
                               alt=""
                               layout="fill"
-                              sizes="(min-width: 100px) 10vw"
+                              sizes="(min-width: 640px) 20vw"
                               className="inline-block w-full h-full"
                             />
                           ) : (
@@ -199,7 +192,7 @@ const IndividualMovie = ({ params }) => {
                               }
                               alt=""
                               layout="fill"
-                              sizes="(min-width: 100px) 10vw"
+                              sizes="(min-width: 640px) 10vw"
                               className="inline-block w-full h-full"
                             />
                           )}
