@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import SearchBar from "@/components/SearchBar";
 import SearchResultCard from "@/components/SearchResultCard";
+import { _searchQueryData } from "@/store/Actions/index";
 
 const SearchResultsPage = ({ searchParams }) => {
   const dispatch = useDispatch();
@@ -15,9 +16,13 @@ const SearchResultsPage = ({ searchParams }) => {
 
   useEffect(() => {
     dispatch(asyncSearchQueryData(searchParams.query, activePage));
+    window.scrollTo({
+      behavior: "smooth",
+      top: 0,
+    });
   }, [searchParams.query, activePage]);
 
-  console.log(searchQueryData);
+  console.log(activePage);
   console.log(totalPages);
   return (
     <>

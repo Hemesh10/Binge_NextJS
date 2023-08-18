@@ -35,6 +35,7 @@ export default function Home() {
   const submitHandler = (event) => {
     event.preventDefault();
     if (event.target.search_q.value.length > 0) {
+      router.refresh("/");
       router.push(`/search?query=${event.target.search_q.value}`);
     } else {
       toast.warn("Kuch type to krlo pehle 🙂");

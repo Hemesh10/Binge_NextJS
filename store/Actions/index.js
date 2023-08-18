@@ -30,3 +30,5 @@ export { asyncAiringTodayTV } from "@/store/Actions/TVActions/AiringTodayTV/Airi
 export { asyncOnAirTV } from "@/store/Actions/TVActions/OnTheAirTV/OnTheAirTVActions";
 export { asyncPopularTV } from "@/store/Actions/TVActions/PopularTV/PopularTVActions";
 export { asyncTopRatedTV } from "@/store/Actions/TVActions/TopRatedTV/TopRatedTVActions";
+
+export { searchQueryData as _searchQueryData } from "@/store/Reducers/HomePage/Search/SearchQueryReducers";

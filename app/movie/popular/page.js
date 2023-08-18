@@ -1,6 +1,10 @@
 "use client";
 import { asyncPopularMovies } from "@/store/Actions/index";
-import { changePage } from "@/store/Reducers/MoviesReducers/PopularMovies/PopularMoviesReducer";
+import {
+  changePage,
+  popularMovies,
+} from "@/store/Reducers/MoviesReducers/PopularMovies/PopularMoviesReducer";
+import { sort } from "@/store/Reducers/MoviesReducers/PopularMovies/PopularMoviesReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import RoutePage from "@/components/RoutePage";
@@ -12,7 +16,12 @@ const PopularMoviesPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncPopularMovies(PopularMoviesActivePage, sort_by));
+    dispatch(asyncPopularMovies());
+    dispatch(popularMovies([]));
+
+    return () => {
+      dispatch(popularMovies([]));
+    };
   }, [PopularMoviesActivePage, sort_by]);
 
   return (
@@ -20,6 +29,8 @@ const PopularMoviesPage = () => {
       activePage={PopularMoviesActivePage}
       changePage={changePage}
       dataArray={PopularMoviesData}
+      sort={sort  }
+      // setSortOrder={setSortOrder}
       header={"Popular Movies"}
     />
   );

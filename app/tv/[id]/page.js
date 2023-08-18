@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 import Image from "next/image";
+import noImage from "@/public/images/alternateImages/noImage.svg";
+
 
 const IndividualTV = ({ params }) => {
   const { IndividualTVData, tvTrailerKeys, tvCastAndCrew, tvUserScore } =
@@ -49,7 +51,11 @@ const IndividualTV = ({ params }) => {
             <div className="details-and-poster flex items-center absolute z-10 top-0 w-full h-full 2xl:pl-36 xl:pl-24 lg:pl-16 pl-6">
               <div className="poster relative w-[19rem] h-[85%] rounded-lg overflow-hidden">
                 <Image
-                  src={`https://www.themoviedb.org/t/p/original/${IndividualTVData.poster_path}`}
+                  src={
+                    IndividualTVData.poster_path
+                      ? `https://www.themoviedb.org/t/p/original/${IndividualTVData.poster_path}`
+                      : noImage
+                  }
                   alt="Poster"
                   layout="fill"
                   sizes="(min-width: 640px) 40vw"
@@ -287,7 +293,7 @@ const IndividualTV = ({ params }) => {
         </section>
       ) : (
         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <h1>Loading...</h1>
+          <CircularProgress />
         </span>
       )}
     </>

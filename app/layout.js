@@ -2,13 +2,10 @@
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import "react-toastify/dist/ReactToastify.css";
-import { Inter } from "next/font/google";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { ToastContainer } from "react-toastify";
 import ReduxProvider from "@/ReduxProvider/ReducProvider";
 import Navbar from "@/components/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -21,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning className="w-full h-full">
-        <ReduxProvider>
+        <ReduxProvider> 
           <Navbar />
           {children}
           <ToastContainer />
