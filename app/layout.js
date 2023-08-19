@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning className="w-full h-full">
-        <ReduxProvider> 
+        <ReduxProvider>
           <Navbar />
           {children}
           <ToastContainer />

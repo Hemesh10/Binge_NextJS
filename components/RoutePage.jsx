@@ -18,10 +18,11 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
 
   const sortHandler = (event) => {
     dispatch(sort(event));
-    setSortDefault(event)
+    dispatch(changePage(-activePage + 1));
+    setSortDefault(event);
   };
 
-  console.log(dataArray)
+  console.log(header);
 
   return (
     <>
@@ -30,38 +31,73 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
           <>
             <div className="header-and-pagination w-full flex justify-between items-center">
               <h1 className="text-2xl font-normal">{header}</h1>
-              <div className="sort-section flex gap-3">
-                <Select
-                  onValueChange={sortHandler}
-                  defaultValue={sortDefault}
-                >
-                  <SelectTrigger className="min-w-[200px]">
-                    <SelectValue placeholder="Sort" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="popularity.desc">
-                        Popularity Descending
-                      </SelectItem>
-                      <SelectItem value="popularity.asc">
-                        Popularity Ascending
-                      </SelectItem>
-                      <SelectItem value="vote_average.desc">
-                        Rating Descending
-                      </SelectItem>
-                      <SelectItem value="vote_average.asc">
-                        Rating Ascending
-                      </SelectItem>
-                      <SelectItem value="revenue.desc">
-                        Revenue Descending
-                      </SelectItem>
-                      <SelectItem value="revenue.asc">
-                        Revenue Ascending
-                      </SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
+              {header === "Popular Movies" ? (
+                <div className="sort-section flex gap-3">
+                  <Select
+                    onValueChange={sortHandler}
+                    defaultValue={sortDefault}
+                  >
+                    <SelectTrigger className="min-w-[200px]">
+                      <SelectValue placeholder="Sort" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="popularity.desc">
+                          Popularity Descending
+                        </SelectItem>
+                        <SelectItem value="popularity.asc">
+                          Popularity Ascending
+                        </SelectItem>
+                        <SelectItem value="vote_average.desc">
+                          Rating Descending
+                        </SelectItem>
+                        <SelectItem value="vote_average.asc">
+                          Rating Ascending
+                        </SelectItem>
+                        <SelectItem value="revenue.desc">
+                          Revenue Descending
+                        </SelectItem>
+                        <SelectItem value="revenue.asc">
+                          Revenue Ascending
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+              ) : header === "Popular TV Shows" ? (
+                <div className="sort-section flex gap-3">
+                  <Select
+                    onValueChange={sortHandler}
+                    defaultValue={sortDefault}
+                  >
+                    <SelectTrigger className="min-w-[200px]">
+                      <SelectValue placeholder="Sort" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="popularity.desc">
+                          Popularity Descending
+                        </SelectItem>
+                        <SelectItem value="popularity.asc">
+                          Popularity Ascending
+                        </SelectItem>
+                        <SelectItem value="vote_average.desc">
+                          Rating Descending
+                        </SelectItem>
+                        <SelectItem value="vote_average.asc">
+                          Rating Ascending
+                        </SelectItem>
+                        <SelectItem value="revenue.desc">
+                          Revenue Descending
+                        </SelectItem>
+                        <SelectItem value="revenue.asc">
+                          Revenue Ascending
+                        </SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+              ) : null}
             </div>
             <div className="results py-8 flex flex-wrap justify-center gap-5">
               {dataArray.map((elem) => {

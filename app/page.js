@@ -15,11 +15,10 @@ import { toast } from "react-toastify";
 import Image from "next/image";
 import HomePageCard from "@/components/HomePageCard";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
-import Link from "next/link";
+import { changeSearchBarState } from "@/store/Reducers/HomePage/SearchBar/SearchBarReducer";
 
 export default function Home() {
   const router = useRouter();
-  const dispatch = useDispatch();
   const {
     trendingTodayData,
     trendingWeeklyData,
@@ -30,12 +29,13 @@ export default function Home() {
   const { FreeMoviesData } = useSelector((state) => state.FreeMoviesReducers);
   const { FreeTVData } = useSelector((state) => state.FreeTVReducers);
 
+  const dispatch = useDispatch();
+
   const [search, setSearch] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (event.target.search_q.value.length > 0) {
-      router.refresh("/");
       router.push(`/search?query=${event.target.search_q.value}`);
     } else {
       toast.warn("Kuch type to krlo pehle 🙂");
@@ -47,6 +47,10 @@ export default function Home() {
     dispatch(asyncTrendingWeekly());
     dispatch(asyncFreeMovies());
     dispatch(asyncFreeTV());
+
+    return () => {
+      dispatch(changeSearchBarState(false));
+    };
   }, []);
 
   if (trendingTodayErrorMsg) {
@@ -62,7 +66,6 @@ export default function Home() {
   // console.log("This is the free movies data : ", FreeMoviesData);
   // console.log("This is the free TV data : ", FreeTVData);
 
-  //TODO Images Optimization
   //TODO Getting average/domain color of an image
 
   return (
@@ -79,9 +82,9 @@ export default function Home() {
             className="object-cover"
           />
         </div>
-        <div className="tagline-and-search absolute top-0 flex flex-col w-full h-full px-10 justify-evenly text-white">
+        <div className="tagline-and-search absolute top-0 flex flex-col w-full h-full 2xl:px-10 px-4 justify-evenly text-white">
           <div className="header">
-            <h1 className="text-[2.75rem] font-bold leading-none">Welcome.</h1>
+            <h1 className="text-[2.65rem] font-bold leading-none">Welcome.</h1>
             <h2 className="text-3xl font-semibold tracking-wide">
               Millions of Movies and TV Shows to discover. Explore Now.
             </h2>
@@ -98,7 +101,7 @@ export default function Home() {
                 onChange={(event) => setSearch(event.target.value)}
                 autoComplete="off"
                 placeholder="Search for a movie or a tv show..."
-                className="text-gray-400 italic text-lg border-none outline-none px-6"
+                className="text-gray-500 italic text-lg border-none outline-none px-6"
               />
               {search.length > 0 ? (
                 <button type="submit" className="mx-6">
