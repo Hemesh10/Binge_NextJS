@@ -9,9 +9,10 @@ import {
   remove_todayError,
   remove_weeklyError,
 } from "@/store/Actions/index";
+import { asyncGetTrailerData } from "@/store/Actions/Homepage/Trailers/TrailersActions";
 import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import HomePageCard from "@/components/HomePageCard";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
@@ -19,6 +20,7 @@ import { changeSearchBarState } from "@/store/Reducers/HomePage/SearchBar/Search
 
 export default function Home() {
   const router = useRouter();
+  const { toast } = useToast();
   const {
     trendingTodayData,
     trendingWeeklyData,
@@ -26,19 +28,26 @@ export default function Home() {
     trendingWeeklyErrorMsg,
   } = useSelector((state) => state.TrendingReducer);
 
+  const { IDsForTrailers, individualDataForTrailer } = useSelector(
+    (state) => state.TrailersReducers
+  );
+
   const { FreeMoviesData } = useSelector((state) => state.FreeMoviesReducers);
   const { FreeTVData } = useSelector((state) => state.FreeTVReducers);
 
   const dispatch = useDispatch();
 
   const [search, setSearch] = useState("");
+  // const [id, setId] = useState([]);
+
+  // let id = [];
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (event.target.search_q.value.length > 0) {
       router.push(`/search?query=${event.target.search_q.value}`);
     } else {
-      toast.warn("Kuch type to krlo pehle 🙂");
+      // toast.warn("Kuch type to krlo pehle 🙂");
     }
   };
 
@@ -53,11 +62,23 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    dispatch(asyncGetTrailerData());
+  }, [IDsForTrailers]);
+
   if (trendingTodayErrorMsg) {
-    toast.error(trendingTodayErrorMsg);
+    toast({
+      variant: "destructive",
+      title: "Error Message",
+      description: trendingTodayErrorMsg,
+    });
     dispatch(remove_todayError());
   } else if (trendingWeeklyErrorMsg) {
-    toast.error(trendingWeeklyErrorMsg);
+    toast({
+      variant: "destructive",
+      title: "Error Message",
+      description: trendingWeeklyErrorMsg,
+    });
     dispatch(remove_weeklyError());
   }
 
@@ -68,6 +89,8 @@ export default function Home() {
 
   //TODO Getting average/domain color of an image
 
+  console.log(individualDataForTrailer);
+
   return (
     <main className="min-h-[100vh] w-full 2xl:px-28 xl:px-24">
       <section className="welcome-poster relative w-full">
@@ -77,7 +100,7 @@ export default function Home() {
               "https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/6UH52Fmau8RPsMAbQbjwN3wJSCj.jpg"
             }
             alt="Cover Image"
-            layout="fill"
+            fill={true}
             priority
             className="object-cover"
           />

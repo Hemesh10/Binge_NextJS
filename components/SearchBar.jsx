@@ -77,28 +77,26 @@ const SearchBar = () => {
                           {element.title ? (
                             <>
                               <span>
-                                <i className="ri-tv-line"></i>
+                                <i className="ri-film-line"></i>
                               </span>
-                              <span>
-                                {element.title} &nbsp;&nbsp;
-                              </span>
+                              <span>{element.title} &nbsp;&nbsp;</span>
                             </>
                           ) : (
                             <>
                               <span>
-                                <i className="ri-film-line"></i>
+                                <i className="ri-tv-line"></i>
                               </span>
-                              <span>
-                                {element.name} 
-                              </span>
+                              <span>{element.name} &nbsp;&nbsp;</span>
                             </>
                           )}
                         </h1>
                       </Link>
                     );
                   })
+              ) : searchBarDynamicResults.length === 0 && searchQueries.lenght > 0 ? (
+                <p>No Results for this query</p>
               ) : (
-                <p>No Result for this query</p>
+                <p>Loading...</p>
               )}
             </div>
           ) : (

@@ -3,7 +3,7 @@ import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import "react-toastify/dist/ReactToastify.css";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "@/components/ui/toaster";
 import ReduxProvider from "@/ReduxProvider/ReducProvider";
 import Navbar from "@/components/Navbar";
 
@@ -21,13 +21,13 @@ export default function RootLayout({ children }) {
         <ReduxProvider>
           <Navbar />
           {children}
-          <ToastContainer />
+          <Toaster />
           <ProgressBar
-              height="2.5px"
-              color="#1CABE7"
-              options={{ showSpinner: false }}
-              shallowRouting
-            />
+            height="2.5px"
+            color="#1CABE7"
+            options={{ showSpinner: false }}
+            shallowRouting
+          />
         </ReduxProvider>
       </body>
     </html>

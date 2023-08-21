@@ -16,7 +16,7 @@ const HomePageCard = ({ elem }) => {
             src={`https://www.themoviedb.org/t/p/original/${elem.poster_path}`}
             alt="Profile Image"
             priority
-            layout="fill"
+            fill={true}
             sizes="(min-width: 640px) 25vw"
             className="object-cover object-center transition-all hover:scale-105"
           />

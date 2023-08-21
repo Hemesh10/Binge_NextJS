@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import SearchBarReducer from "./Reducers/HomePage/SearchBar/SearchBarReducer";
 import TrendingReducer from "./Reducers/HomePage/Trending/TrendingReducer";
 import FreeMoviesReducers from "./Reducers/HomePage/Free/Movies/FreeMoviesReducers";
+import TrailersReducers from "./Reducers/HomePage/Trailers/TrailersReducers";
 import FreeTVReducers from "./Reducers/HomePage/Free/TV/FreeTVReducers";
 import SearchQueryReducers from "./Reducers/HomePage/Search/SearchQueryReducers";
 import IndividualMovieReducers from "./Reducers/MoviesReducers/IndividualMovie/IndividualMovieReducer";
@@ -19,6 +20,7 @@ export const store = configureStore({
   reducer: {
     SearchBarReducer,
     TrendingReducer,
+    TrailersReducers,
     FreeMoviesReducers,
     FreeTVReducers,
     SearchQueryReducers,
