@@ -130,9 +130,15 @@ body ::-webkit-scrollbar-thumb {
   );
 }
 
+.trailers-section {
+  background: linear-gradient(to right, rgba(3, 37, 65, 0.75) 0%, rgba(3, 37, 65, 0.8) 100%);
+}
+
 .trailers-section .trailer i {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+    /* background: linear-gradient(to right,rgba(var(--tmdbDarkBlue),.75) 0%,rgba(var(--tmdbDarkBlue),.75) 100%); */

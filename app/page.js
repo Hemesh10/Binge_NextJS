@@ -49,13 +49,17 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [trailerModal, setTrailerModal] = useState(false);
   const [trailerKey, setTrailerKey] = useState("");
+  const [trailerSectionBackdrop, setTrailerSectionBackdrop] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (event.target.search_q.value.length > 0) {
       router.push(`/search?query=${event.target.search_q.value}`);
     } else {
-      // toast.warn("Kuch type to krlo pehle 🙂");
+      toast({
+        title: "Zyada tezz mt chalo",
+        description: "Kuch type krke search karo 😕",
+      });
     }
   };
 
@@ -94,8 +98,6 @@ export default function Home() {
     dispatch(remove_weeklyError());
   }
 
-  //TODO Getting average/domain color of an image
-
   const triggerModal = (key) => {
     if (key) {
       setTrailerKey(key);
@@ -103,13 +105,19 @@ export default function Home() {
     }
   };
 
+  const setTrailerSectionCover = (backdrop_cover) => {
+    setTrailerSectionBackdrop(backdrop_cover);
+  };
+
+  //TODO Getting average/domain color of an image
+
   return (
-    <main className="min-h-[100vh] w-full 2xl:px-28 xl:px-24">
+    <main className="relative min-h-[100vh] w-full 2xl:px-28 xl:px-24">
       <Modal
         open={trailerModal}
         onClose={() => setTrailerModal(false) && setTrailerKey("")}
       >
-        <div className="player-wrapper w-[85%] h-[80%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black">
+        <div className="player-wrapper w-[95%] h-[85%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[53.5%] bg-black">
           <div className="player-header text-white w-full flex justify-between items-center py-1 px-4">
             <h1 className="text-lg font-normal">Play Trailer</h1>
             <Button onClick={() => setTrailerModal(false)}>
@@ -185,10 +193,15 @@ export default function Home() {
       <section className="trailers-section relative w-full pt-6">
         <Image
           src={
-            "https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/6UH52Fmau8RPsMAbQbjwN3wJSCj.jpg"
+            trendingTodayTrailersData.length > 0 &&
+            trailerSectionBackdrop === ""
+              ? `https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces/2D6ksPSChcRcZuvavrae9g4b8oh.jpg`
+              : `https://www.themoviedb.org/t/p/w1920_and_h427_multi_faces${trailerSectionBackdrop}`
           }
+          alt="Backdrop Poster"
           fill={true}
-          className="absolute -z-10"
+          sizes="(min-width: 640px) 100vw"
+          className="absolute -z-10 object-cover object-top"
         />
         <Tabs defaultValue="trendingTodayTrailers">
           <div className="section-header flex gap-4 pl-12">
@@ -202,7 +215,7 @@ export default function Home() {
           </div>
           <div className="content-slider">
             <TabsContent value="trendingTodayTrailers">
-              <div className="slider w-full flex pt-6 pb-12 px-12 gap-6 overflow-x-auto">
+              <div className="slider w-full flex py-6 px-12 gap-6 overflow-x-auto">
                 {trendingTodayTrailersData.length > 0 ? (
                   trendingTodayTrailersData
                     .slice(0, 20)
@@ -214,6 +227,9 @@ export default function Home() {
                           className="flex flex-col gap-2 items-center"
                         >
                           <div
+                            onMouseEnter={() =>
+                              setTrailerSectionCover(elem.backdrop_path)
+                            }
                             onClick={() =>
                               triggerModal(
                                 elem.videos.results.filter(
@@ -221,7 +237,7 @@ export default function Home() {
                                 )[0].key
                               )
                             }
-                            className="trailer relative w-96 h-52 flex-shrink-0 rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer"
+                            className="trailer relative w-80 h-48 flex-shrink-0 rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer"
                           >
                             <Image
                               src={`https://www.themoviedb.org/t/p/original/${elem.backdrop_path}`}
@@ -231,7 +247,7 @@ export default function Home() {
                               sizes="(min-width: 640px) 50vw"
                               className="object-cover object-center"
                             />
-                            <div className="img-cover absolute w-full h-full opacity-25 bg-black"></div>
+                            <div className="img-cover absolute w-full h-full opacity-30 bg-black"></div>
                             <i className="ri-play-fill text-8xl text-white"></i>
                           </div>
                           <div className="info">
@@ -242,7 +258,7 @@ export default function Home() {
                                   : `/tv/${elem.id}`
                               }
                             >
-                              <h1 className="text-lg text-white font-semibold">
+                              <h1 className="text-base text-white font-semibold text-center">
                                 {elem.title ? elem.title : elem.name}
                               </h1>
                             </Link>
@@ -256,7 +272,7 @@ export default function Home() {
               </div>
             </TabsContent>
             <TabsContent value="trendingWeeklyTrailers">
-              <div className="slider w-full flex pt-6 pb-12 px-12 gap-6 overflow-x-auto">
+              <div className="slider w-full flex py-6 px-12 gap-6 overflow-x-auto">
                 {trendingWeeklyTrailersData.length > 0 ? (
                   trendingWeeklyTrailersData
                     .slice(0, 20)
@@ -268,6 +284,9 @@ export default function Home() {
                           className="flex flex-col gap-2 items-center"
                         >
                           <div
+                            onMouseEnter={() =>
+                              setTrailerSectionCover(elem.backdrop_path)
+                            }
                             onClick={() =>
                               triggerModal(
                                 elem.videos.results.filter(
@@ -275,7 +294,7 @@ export default function Home() {
                                 )[0].key
                               )
                             }
-                            className="trailer relative w-96 h-52 flex-shrink-0 rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer"
+                            className="trailer relative w-80 h-48 flex-shrink-0 rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer"
                           >
                             <Image
                               src={`https://www.themoviedb.org/t/p/original/${elem.backdrop_path}`}
@@ -285,7 +304,7 @@ export default function Home() {
                               sizes="(min-width: 640px) 50vw"
                               className="object-cover object-center"
                             />
-                            <div className="img-cover absolute w-full h-full opacity-25 bg-black"></div>
+                            <div className="img-cover absolute w-full h-full opacity-30 bg-black"></div>
                             <i className="ri-play-fill text-8xl text-white"></i>
                           </div>
                           <div className="info">
@@ -296,7 +315,7 @@ export default function Home() {
                                   : `/tv/${elem.id}`
                               }
                             >
-                              <h1 className="text-lg text-white font-semibold">
+                              <h1 className="text-base text-white font-semibold">
                                 {elem.title ? elem.title : elem.name}
                               </h1>
                             </Link>
