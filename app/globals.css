@@ -129,3 +129,10 @@ body ::-webkit-scrollbar-thumb {
     rgba(24, 170, 232, 1) 100%
   );
 }
+
+.trailers-section .trailer i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -34,9 +34,6 @@ const IndividualMovie = ({ params }) => {
   }, []);
 
   const [modal, setModal] = useState(false);
-
-  // console.log(IndividualMovieData);
-
   return (
     <>
       {Object.keys(IndividualMovieData).length > 0 ? (

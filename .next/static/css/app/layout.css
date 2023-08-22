@@ -570,6 +570,9 @@ video {
 .top-1\/2 {
   top: 50%;
 }
+.-z-10 {
+  z-index: -10;
+}
 .z-10 {
   z-index: 10;
 }
@@ -700,6 +703,9 @@ video {
 .h-px {
   height: 1px;
 }
+.h-\[90\%\] {
+  height: 90%;
+}
 .max-h-\[22rem\] {
   max-height: 22rem;
 }
@@ -724,9 +730,6 @@ video {
 .w-3\.5 {
   width: 0.875rem;
 }
-.w-36 {
-  width: 9rem;
-}
 .w-4 {
   width: 1rem;
 }
@@ -736,11 +739,17 @@ video {
 .w-9 {
   width: 2.25rem;
 }
+.w-96 {
+  width: 24rem;
+}
 .w-\[16\%\] {
   width: 16%;
 }
 .w-\[19rem\] {
   width: 19rem;
+}
+.w-\[22rem\] {
+  width: 22rem;
 }
 .w-\[84\%\] {
   width: 84%;
@@ -812,6 +821,9 @@ video {
 }
 .cursor-default {
   cursor: default;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 .select-none {
   -webkit-user-select: none;
@@ -908,6 +920,9 @@ video {
 .rounded-sm {
   border-radius: calc(var(--radius) - 4px);
 }
+.rounded-xl {
+  border-radius: 0.75rem;
+}
 .rounded-b {
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
@@ -970,6 +985,10 @@ video {
 }
 .bg-primary\/50 {
   background-color: hsl(var(--primary) / 0.5);
+}
+.bg-purple-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(168 85 247 / var(--tw-bg-opacity));
 }
 .bg-secondary {
   background-color: hsl(var(--secondary));
@@ -1069,10 +1088,6 @@ video {
   padding-left: 2rem;
   padding-right: 2rem;
 }
-.py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -1104,6 +1119,9 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+.pb-12 {
+  padding-bottom: 3rem;
 }
 .pb-2 {
   padding-bottom: 0.5rem;
@@ -1164,6 +1182,10 @@ video {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
 }
 .text-\[\.4rem\] {
   font-size: .4rem;
@@ -1291,6 +1313,9 @@ video {
 .opacity-0 {
   opacity: 0;
 }
+.opacity-30 {
+  opacity: 0.3;
+}
 .opacity-40 {
   opacity: 0.4;
 }
@@ -1308,6 +1333,15 @@ video {
 }
 .opacity-90 {
   opacity: 0.9;
+}
+.opacity-\[25\] {
+  opacity: 25;
+}
+.opacity-\[25\%\] {
+  opacity: 25%;
+}
+.opacity-25 {
+  opacity: 0.25;
 }
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -1438,6 +1472,13 @@ body ::-webkit-scrollbar-thumb {
     rgba(9, 9, 121, 1) 20%,
     rgba(24, 170, 232, 1) 100%
   );
+}
+
+.trailers-section .trailer i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .placeholder\:text-muted-foreground::-moz-placeholder {

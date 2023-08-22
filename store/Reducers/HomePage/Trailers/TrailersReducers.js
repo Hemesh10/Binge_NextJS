@@ -1,23 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  IDsForTrailers: [],
-  individualDataForTrailer: [],
+  trendingTodayTrailersIDs: [],
+  trendingTodayTrailersData: [],
+  trendingWeeklyTrailersIDs: [],
+  trendingWeeklyTrailersData: [],
 };
 
 export const TrailersReducers = createSlice({
   name: "trailerArr",
   initialState,
   reducers: {
-    getIDS: (state, action) => {
-      state.IDsForTrailers = action.payload;
+    getTrendingTodayTrailersIDS: (state, action) => {
+      state.trendingTodayTrailersIDs = action.payload;
     },
-    getTrailerData: (state, action) => {
-      state.individualDataForTrailer = action.payload;
+    getTrendingTodayTrailersData: (state, action) => {
+      state.trendingTodayTrailersData.push(action.payload);
+    },
+    getTrendingWeeklyTrailersIDs: (state, action) => {
+      state.trendingWeeklyTrailersIDs = action.payload;
+    },
+    getTrendingWeeklyTrailersData: (state, action) => {
+      state.trendingWeeklyTrailersData.push(action.payload);
     },
   },
 });
 
-export const { getTrailerData, getIDS } = TrailersReducers.actions;
+export const {
+  getTrendingTodayTrailersIDS,
+  getTrendingTodayTrailersData,
+  getTrendingWeeklyTrailersIDs,
+  getTrendingWeeklyTrailersData,
+} = TrailersReducers.actions;
 
 export default TrailersReducers.reducer;

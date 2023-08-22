@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { Modal } from "@mui/material";
+import { Button } from "@/components/ui/button";
 import {
   asyncTrendingToday,
   asyncTrendingWeekly,
@@ -9,14 +14,15 @@ import {
   remove_todayError,
   remove_weeklyError,
 } from "@/store/Actions/index";
-import { asyncGetTrailerData } from "@/store/Actions/Homepage/Trailers/TrailersActions";
-import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
-import { useRouter } from "next/navigation";
-import { useToast } from "@/components/ui/use-toast";
-import Image from "next/image";
-import HomePageCard from "@/components/HomePageCard";
-import LoadingSkeleton from "@/components/LoadingSkeleton";
+import {
+  asyncGetTrendingTodayTrailersData,
+  asyncGetTrendingWeeklyTrailersData,
+} from "@/store/Actions/Homepage/Trailers/TrailersActions";
 import { changeSearchBarState } from "@/store/Reducers/HomePage/SearchBar/SearchBarReducer";
+import { useToast } from "@/components/ui/use-toast";
+import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
+import TabsAndSlider from "@/components/TabsAndSliderSection";
+import LoadingSkeleton from "@/components/LoadingSkeleton";
 
 export default function Home() {
   const router = useRouter();
@@ -28,9 +34,12 @@ export default function Home() {
     trendingWeeklyErrorMsg,
   } = useSelector((state) => state.TrendingReducer);
 
-  const { IDsForTrailers, individualDataForTrailer } = useSelector(
-    (state) => state.TrailersReducers
-  );
+  const {
+    trendingTodayTrailersIDs,
+    trendingWeeklyTrailersIDs,
+    trendingTodayTrailersData,
+    trendingWeeklyTrailersData,
+  } = useSelector((state) => state.TrailersReducers);
 
   const { FreeMoviesData } = useSelector((state) => state.FreeMoviesReducers);
   const { FreeTVData } = useSelector((state) => state.FreeTVReducers);
@@ -38,9 +47,8 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const [search, setSearch] = useState("");
-  // const [id, setId] = useState([]);
-
-  // let id = [];
+  const [trailerModal, setTrailerModal] = useState(false);
+  const [trailerKey, setTrailerKey] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -63,8 +71,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    dispatch(asyncGetTrailerData());
-  }, [IDsForTrailers]);
+    dispatch(asyncGetTrendingTodayTrailersData());
+  }, [trendingTodayTrailersIDs]);
+
+  useEffect(() => {
+    dispatch(asyncGetTrendingWeeklyTrailersData());
+  }, [trendingWeeklyTrailersIDs]);
 
   if (trendingTodayErrorMsg) {
     toast({
@@ -82,17 +94,39 @@ export default function Home() {
     dispatch(remove_weeklyError());
   }
 
-  // console.log("This is the trending today data : ", trendingTodayData);
-  // console.log("This is the trending weekly data : ", trendingWeeklyData);
-  // console.log("This is the free movies data : ", FreeMoviesData);
-  // console.log("This is the free TV data : ", FreeTVData);
-
   //TODO Getting average/domain color of an image
 
-  console.log(individualDataForTrailer);
+  const triggerModal = (key) => {
+    if (key) {
+      setTrailerKey(key);
+      setTrailerModal(true);
+    }
+  };
 
   return (
     <main className="min-h-[100vh] w-full 2xl:px-28 xl:px-24">
+      <Modal
+        open={trailerModal}
+        onClose={() => setTrailerModal(false) && setTrailerKey("")}
+      >
+        <div className="player-wrapper w-[85%] h-[80%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black">
+          <div className="player-header text-white w-full flex justify-between items-center py-1 px-4">
+            <h1 className="text-lg font-normal">Play Trailer</h1>
+            <Button onClick={() => setTrailerModal(false)}>
+              <p className="font-normal">X</p>
+            </Button>
+          </div>
+          <div className="player w-full h-full">
+            <iframe
+              src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}
+              allow="autoplay"
+              frameborder="0"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+      </Modal>
       <section className="welcome-poster relative w-full">
         <div className="img-sec relative w-full 2xl:h-72 h-64">
           <Image
@@ -139,96 +173,153 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="trending-section w-full py-6">
-        <Tabs defaultValue="today">
-          <>
-            <div className="section-header flex gap-4 pl-12">
-              <h1 className="text-2xl font-medium">Trending</h1>
-              <TabsList>
-                <TabsTrigger value="today">Today</TabsTrigger>
-                <TabsTrigger value="weekly">This Week</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className="content-slider">
-              <TabsContent value="today">
-                <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
-                  {trendingTodayData.length > 0 ? (
-                    trendingTodayData.map((elem) => {
+      <section className="trending-section w-full pt-6">
+        <TabsAndSlider
+          headerMain={"Trending"}
+          triggerHeader1={"Today"}
+          triggerHeader2={"Weekly"}
+          dataPrimary={trendingTodayData}
+          dataSecondary={trendingWeeklyData}
+        />
+      </section>
+      <section className="trailers-section relative w-full pt-6">
+        <Image
+          src={
+            "https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,00192f,00baff)/6UH52Fmau8RPsMAbQbjwN3wJSCj.jpg"
+          }
+          fill={true}
+          className="absolute -z-10"
+        />
+        <Tabs defaultValue="trendingTodayTrailers">
+          <div className="section-header flex gap-4 pl-12">
+            <h1 className="text-2xl text-white font-medium">
+              Trending Trailers
+            </h1>
+            <TabsList>
+              <TabsTrigger value="trendingTodayTrailers">Today</TabsTrigger>
+              <TabsTrigger value="trendingWeeklyTrailers">Weekly</TabsTrigger>
+            </TabsList>
+          </div>
+          <div className="content-slider">
+            <TabsContent value="trendingTodayTrailers">
+              <div className="slider w-full flex pt-6 pb-12 px-12 gap-6 overflow-x-auto">
+                {trendingTodayTrailersData.length > 0 ? (
+                  trendingTodayTrailersData
+                    .slice(0, 20)
+                    .filter((element) => element.videos.results.length > 0)
+                    .map((elem) => {
                       return (
-                        <div key={elem.id} className="card-wrapper">
-                          <HomePageCard elem={elem} />
+                        <div
+                          key={elem.id}
+                          className="flex flex-col gap-2 items-center"
+                        >
+                          <div
+                            onClick={() =>
+                              triggerModal(
+                                elem.videos.results.filter(
+                                  (elem) => elem.type === "Trailer"
+                                )[0].key
+                              )
+                            }
+                            className="trailer relative w-96 h-52 flex-shrink-0 rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer"
+                          >
+                            <Image
+                              src={`https://www.themoviedb.org/t/p/original/${elem.backdrop_path}`}
+                              alt="Poster Image"
+                              fill={true}
+                              priority
+                              sizes="(min-width: 640px) 50vw"
+                              className="object-cover object-center"
+                            />
+                            <div className="img-cover absolute w-full h-full opacity-25 bg-black"></div>
+                            <i className="ri-play-fill text-8xl text-white"></i>
+                          </div>
+                          <div className="info">
+                            <Link
+                              href={
+                                elem.title
+                                  ? `/movie/${elem.id}`
+                                  : `/tv/${elem.id}`
+                              }
+                            >
+                              <h1 className="text-lg text-white font-semibold">
+                                {elem.title ? elem.title : elem.name}
+                              </h1>
+                            </Link>
+                          </div>
                         </div>
                       );
                     })
-                  ) : (
-                    <LoadingSkeleton cards={8} heigth={250} width={180} />
-                  )}
-                </div>
-              </TabsContent>
-              <TabsContent value="weekly">
-                <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
-                  {trendingWeeklyData.length > 0 ? (
-                    trendingWeeklyData.map((elem) => {
+                ) : (
+                  <LoadingSkeleton cards={10} heigth={200} width={380} />
+                )}
+              </div>
+            </TabsContent>
+            <TabsContent value="trendingWeeklyTrailers">
+              <div className="slider w-full flex pt-6 pb-12 px-12 gap-6 overflow-x-auto">
+                {trendingWeeklyTrailersData.length > 0 ? (
+                  trendingWeeklyTrailersData
+                    .slice(0, 20)
+                    .filter((element) => element.videos.results.length > 0)
+                    .map((elem) => {
                       return (
-                        <div key={elem.id} className="card-wrapper">
-                          <HomePageCard elem={elem} />
+                        <div
+                          key={elem.id}
+                          className="flex flex-col gap-2 items-center"
+                        >
+                          <div
+                            onClick={() =>
+                              triggerModal(
+                                elem.videos.results.filter(
+                                  (elem) => elem.type === "Trailer"
+                                )[0].key
+                              )
+                            }
+                            className="trailer relative w-96 h-52 flex-shrink-0 rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer"
+                          >
+                            <Image
+                              src={`https://www.themoviedb.org/t/p/original/${elem.backdrop_path}`}
+                              alt="Poster Image"
+                              fill={true}
+                              priority
+                              sizes="(min-width: 640px) 50vw"
+                              className="object-cover object-center"
+                            />
+                            <div className="img-cover absolute w-full h-full opacity-25 bg-black"></div>
+                            <i className="ri-play-fill text-8xl text-white"></i>
+                          </div>
+                          <div className="info">
+                            <Link
+                              href={
+                                elem.title
+                                  ? `/movie/${elem.id}`
+                                  : `/tv/${elem.id}`
+                              }
+                            >
+                              <h1 className="text-lg text-white font-semibold">
+                                {elem.title ? elem.title : elem.name}
+                              </h1>
+                            </Link>
+                          </div>
                         </div>
                       );
                     })
-                  ) : (
-                    <LoadingSkeleton cards={8} heigth={250} width={180} />
-                  )}
-                </div>
-              </TabsContent>
-            </div>
-          </>
+                ) : (
+                  <LoadingSkeleton cards={10} heigth={200} width={380} />
+                )}
+              </div>
+            </TabsContent>
+          </div>
         </Tabs>
       </section>
-      <section className="free-to-watch w-full py-0">
-        <Tabs defaultValue="free-movies">
-          <>
-            <div className="section-header flex gap-4 pl-12">
-              <h1 className="text-2xl font-medium">Free To Watch</h1>
-              <TabsList>
-                <TabsTrigger value="free-movies">Movies</TabsTrigger>
-                <TabsTrigger value="free-tv">TV</TabsTrigger>
-              </TabsList>
-            </div>
-            <div className="content-slider">
-              <TabsContent value="free-movies">
-                <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
-                  {FreeMoviesData.length > 0 ? (
-                    FreeMoviesData.map((elem) => {
-                      return (
-                        <div key={elem.id} className="card-wrapper">
-                          <HomePageCard elem={elem} />
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <LoadingSkeleton cards={8} heigth={250} width={180} />
-                  )}
-                  {/* <div className="w-36 h-52 bg-yellow-500"></div> */}
-                </div>
-              </TabsContent>
-              <TabsContent value="free-tv">
-                <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
-                  {FreeTVData.length > 0 ? (
-                    FreeTVData.map((elem) => {
-                      return (
-                        <div key={elem.id} className="card-wrapper">
-                          <HomePageCard elem={elem} />
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <LoadingSkeleton cards={8} heigth={250} width={180} />
-                  )}
-                </div>
-              </TabsContent>
-            </div>
-          </>
-        </Tabs>
+      <section className="free-to-watch w-full pt-6">
+        <TabsAndSlider
+          headerMain={"Free To Watch"}
+          triggerHeader1={"Movies"}
+          triggerHeader2={"TV"}
+          dataPrimary={FreeMoviesData}
+          dataSecondary={FreeTVData}
+        />
       </section>
     </main>
   );
