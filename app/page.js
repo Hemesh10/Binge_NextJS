@@ -110,6 +110,8 @@ export default function Home() {
   };
 
   //TODO Getting average/domain color of an image
+  //TODO progress bar
+  //TODO Infinite Scrolling
 
   return (
     <main className="relative min-h-[100vh] w-full 2xl:px-28 xl:px-24">

@@ -14,6 +14,7 @@ import Modal from "@mui/material/Modal";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 import Image from "next/image";
 import noImage from "@/public/images/alternateImages/noImage.svg";
+import LoadingComponent from "@/components/LoadingComponent";
 
 const IndividualMovie = ({ params }) => {
   const {
@@ -282,9 +283,7 @@ const IndividualMovie = ({ params }) => {
           </section>
         </section>
       ) : (
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <CircularProgress />
-        </span>
+        <LoadingComponent />
       )}
     </>
   );

@@ -14,6 +14,7 @@ import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 import Image from "next/image";
 import noImage from "@/public/images/alternateImages/noImage.svg";
+import LoadingComponent from "@/components/LoadingComponent";
 
 const IndividualTV = ({ params }) => {
   const { IndividualTVData, tvTrailerKeys, tvCastAndCrew, tvUserScore } =
@@ -293,9 +294,7 @@ const IndividualTV = ({ params }) => {
           </section>
         </section>
       ) : (
-        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <CircularProgress />
-        </span>
+        <LoadingComponent />
       )}
     </>
   );
