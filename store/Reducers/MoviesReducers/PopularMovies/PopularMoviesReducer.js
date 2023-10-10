@@ -11,7 +11,7 @@ export const PopularMoviesReducer = createSlice({
   initialState,
   reducers: {
     popularMovies: (state, action) => {
-      state.PopularMoviesData = action.payload;
+      state.PopularMoviesData = [...state.PopularMoviesData, ...action.payload];
     },
     changePage: (state, action) => {
       state.PopularMoviesActivePage += action.payload;

@@ -5,8 +5,8 @@ import LoadingSkeleton from "./LoadingSkeleton";
 const TabsAndSlider = ({ headerMain, triggerHeader1, triggerHeader2 ,dataPrimary, dataSecondary }) => {
   return (
     <Tabs defaultValue="primary">
-      <div className="section-header flex gap-4 pl-12">
-        <h1 className="text-2xl font-medium">{headerMain}</h1>
+      <div className="section-header flex gap-4 pl-4 sm:pl-12">
+        <h1 className="text-xl sm:text-2xl font-medium">{headerMain}</h1>
         <TabsList>
           <TabsTrigger value="primary">{triggerHeader1}</TabsTrigger>
           <TabsTrigger value="secondary">{triggerHeader2}</TabsTrigger>
@@ -14,7 +14,7 @@ const TabsAndSlider = ({ headerMain, triggerHeader1, triggerHeader2 ,dataPrimary
       </div>
       <div className="content-slider">
         <TabsContent value="primary">
-          <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
+          <div className="slider w-full flex py-4 px-4 sm:px-12 gap-6 overflow-x-auto scroll-smooth">
             {dataPrimary.length > 0 ? (
               dataPrimary.map((elem) => {
                 return (
@@ -29,7 +29,7 @@ const TabsAndSlider = ({ headerMain, triggerHeader1, triggerHeader2 ,dataPrimary
           </div>
         </TabsContent>
         <TabsContent value="secondary">
-          <div className="slider w-full flex py-4 px-12 gap-6 overflow-x-auto">
+          <div className="slider w-full flex py-4 px-4 sm:px-12 gap-6 overflow-x-auto">
             {dataSecondary.length > 0 ? (
               dataSecondary.map((elem) => {
                 return (

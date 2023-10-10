@@ -1,6 +1,6 @@
 "use client";
 import { asyncOnAirTV} from "@/store/Actions/index"
-import { changePage } from "@/store/Reducers/TVReducers/OnTheAirTV/OnTheAirTVReducers";
+import { changePage, onAirTV } from "@/store/Reducers/TVReducers/OnTheAirTV/OnTheAirTVReducers";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import RoutePage from "@/components/RoutePage";
@@ -13,6 +13,10 @@ const OnTheAirTVPage = () => {
 
   useEffect(() => {
     dispatch(asyncOnAirTV());
+
+    return () => {
+      dispatch(onAirTV([]));
+    };
   }, [OnAirTVActivePage]);
   return (
     <RoutePage

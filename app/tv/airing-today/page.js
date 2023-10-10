@@ -1,6 +1,9 @@
 "use client";
-import { asyncAiringTodayTV } from "@/store/Actions/index"
-import { changePage } from "@/store/Reducers/TVReducers/AiringTodayTV/AiringTodayTVReducers";
+import { asyncAiringTodayTV } from "@/store/Actions/index";
+import {
+  changePage,
+  airingTodayTV,
+} from "@/store/Reducers/TVReducers/AiringTodayTV/AiringTodayTVReducers";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import RoutePage from "@/components/RoutePage";
@@ -13,6 +16,10 @@ const AiringTodayTVPage = () => {
 
   useEffect(() => {
     dispatch(asyncAiringTodayTV());
+
+    return () => {
+      dispatch(airingTodayTV([]));
+    };
   }, [AiringTodayTVActivePage]);
 
   return (

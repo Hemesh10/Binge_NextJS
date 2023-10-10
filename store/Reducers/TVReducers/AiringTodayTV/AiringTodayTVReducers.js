@@ -10,7 +10,7 @@ export const AiringTodayTVReducers = createSlice({
   initialState,
   reducers: {
     airingTodayTV: (state, action) => {
-      state.AiringTodayTVData = action.payload;
+      state.AiringTodayTVData = action.payload
     },
     changePage: (state, action) => {
       state.AiringTodayTVActivePage += action.payload;

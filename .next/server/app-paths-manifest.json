@@ -1,8 +1,5 @@
 {
   "/page": "app/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/tv/popular/page": "app/tv/popular/page.js",
-  "/movie/popular/page": "app/movie/popular/page.js",
-  "/tv/[id]/page": "app/tv/[id]/page.js",
-  "/movie/[id]/page": "app/movie/[id]/page.js"
+  "/movie/[id]/page": "app/movie/[id]/page.js",
+  "/tv/[id]/page": "app/tv/[id]/page.js"
 }

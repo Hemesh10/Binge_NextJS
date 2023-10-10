@@ -29,7 +29,10 @@ export const asyncTrendingToday = () => async (dispatch, getState) => {
     );
   } catch (error) {
     dispatch(
-      t_todayError(error.response.data.status_message + "\n" + error.code)
+      t_todayError(
+        error.response.data.status_message + "\n" + error.code ||
+          "Network Error"
+      )
     );
   }
 };
@@ -52,7 +55,10 @@ export const asyncTrendingWeekly = () => async (dispatch, getState) => {
     );
   } catch (error) {
     dispatch(
-      t_weeklyError(error.response.data.status_message + "\n" + error.code)
+      t_weeklyError(
+        error.response.data.status_message + "\n" + error.code ||
+          "Network Error"
+      )
     );
   }
 };

@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const SearchBarReducer = createSlice({
-  name: "searchBarTrigger",
+  name: "searchBarReducer",
   initialState,
   reducers: {
     changeSearchBarState: (state, action) => {

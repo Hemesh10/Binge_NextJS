@@ -10,7 +10,7 @@ export const NowPlayingMoviesReducers = createSlice({
   initialState,
   reducers: {
     nowPlayingMovies: (state, action) => {
-      state.NowPlayingMoviesData = action.payload;
+      state.NowPlayingMoviesData = action.payload
     },
     changePage: (state, action) => {
       state.NowPlayingMoviesActivePage += action.payload;
@@ -18,6 +18,7 @@ export const NowPlayingMoviesReducers = createSlice({
   },
 });
 
-export const { nowPlayingMovies, changePage } = NowPlayingMoviesReducers.actions;
+export const { nowPlayingMovies, changePage } =
+  NowPlayingMoviesReducers.actions;
 
 export default NowPlayingMoviesReducers.reducer;

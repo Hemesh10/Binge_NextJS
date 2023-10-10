@@ -1,6 +1,9 @@
 "use client";
-import { asyncTopRatedTV} from "@/store/Actions/index"
-import { changePage } from "@/store/Reducers/TVReducers/TopRatedTV/TopRatedTVReducers";
+import { asyncTopRatedTV } from "@/store/Actions/index";
+import {
+  changePage,
+  topRatedTV,
+} from "@/store/Reducers/TVReducers/TopRatedTV/TopRatedTVReducers";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import RoutePage from "@/components/RoutePage";
@@ -13,6 +16,10 @@ const TopRatedTVPage = () => {
 
   useEffect(() => {
     dispatch(asyncTopRatedTV());
+
+    return () => {
+      dispatch(topRatedTV([]));
+    };
   }, [TopRatedTVActivePage]);
 
   return (

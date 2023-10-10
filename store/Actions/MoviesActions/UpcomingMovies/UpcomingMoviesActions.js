@@ -8,6 +8,7 @@ export const asyncUpcomingMovies = () => async (dispatch, getState) => {
       `https://api.themoviedb.org/3/movie/upcoming?api_key=6bd862bb6372fb6e6174ebc27cc7d8e2&page=${UpcomingMoviesActivePage}`
     );
     dispatch(upcomingMovies(data.results));
+    console.log(getState().UpcomingMoviesReducers);
   } catch (error) {
     console.log(error);
   }

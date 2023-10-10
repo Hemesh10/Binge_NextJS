@@ -1,6 +1,9 @@
 "use client";
-import { asyncNowPlayingMovies } from "@/store/Actions/index"
-import { changePage } from "@/store/Reducers/MoviesReducers/NowPlayingMovies/NowPlayingMoviesReducers";
+import { asyncNowPlayingMovies } from "@/store/Actions/index";
+import {
+  changePage,
+  nowPlayingMovies,
+} from "@/store/Reducers/MoviesReducers/NowPlayingMovies/NowPlayingMoviesReducers";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import RoutePage from "@/components/RoutePage";
@@ -13,6 +16,10 @@ const NowPlayingMoviesPage = () => {
 
   useEffect(() => {
     dispatch(asyncNowPlayingMovies());
+
+    return () => {
+      dispatch(nowPlayingMovies([]));
+    };
   }, [NowPlayingMoviesActivePage]);
 
   console.log(NowPlayingMoviesData);

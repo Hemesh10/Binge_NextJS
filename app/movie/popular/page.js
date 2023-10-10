@@ -17,11 +17,12 @@ const PopularMoviesPage = () => {
 
   useEffect(() => {
     dispatch(asyncPopularMovies());
-    dispatch(popularMovies([]));
-
-    return () => {
-      dispatch(popularMovies([]));
-    };
+    // return () => {
+    //   dispatch(
+    //     changePage(-PopularMoviesActivePage + 1)
+    //   );
+    //   console.log("Component unmounted!"); //why this is happening???
+    // };
   }, [PopularMoviesActivePage, sort_by]);
 
   return (
@@ -29,8 +30,7 @@ const PopularMoviesPage = () => {
       activePage={PopularMoviesActivePage}
       changePage={changePage}
       dataArray={PopularMoviesData}
-      sort={sort  }
-      // setSortOrder={setSortOrder}
+      sort={sort}
       header={"Popular Movies"}
     />
   );

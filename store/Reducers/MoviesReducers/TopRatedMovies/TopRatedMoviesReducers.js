@@ -10,7 +10,10 @@ export const TopRatedMoviesReducers = createSlice({
   initialState,
   reducers: {
     topRatedMovies: (state, action) => {
-      state.TopRatedMoviesData = action.payload;
+      state.TopRatedMoviesData = [
+        ...state.TopRatedMoviesData,
+        ...action.payload,
+      ];
     },
     changePage: (state, action) => {
       state.TopRatedMoviesActivePage += action.payload;

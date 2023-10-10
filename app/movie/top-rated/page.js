@@ -1,6 +1,9 @@
 "use client";
 import { asyncTopRatedMovies } from "@/store/Actions/index";
-import { changePage } from "@/store/Reducers/MoviesReducers/TopRatedMovies/TopRatedMoviesReducers";
+import {
+  changePage,
+  topRatedMovies,
+} from "@/store/Reducers/MoviesReducers/TopRatedMovies/TopRatedMoviesReducers";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import RoutePage from "@/components/RoutePage";
@@ -13,6 +16,10 @@ const TopRatedMoviesPage = () => {
 
   useEffect(() => {
     dispatch(asyncTopRatedMovies());
+
+    return () => {
+      dispatch(topRatedMovies([]));
+    };
   }, [TopRatedMoviesActivePage]);
 
   return (

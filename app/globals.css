@@ -140,5 +140,3 @@ body ::-webkit-scrollbar-thumb {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-    /* background: linear-gradient(to right,rgba(var(--tmdbDarkBlue),.75) 0%,rgba(var(--tmdbDarkBlue),.75) 100%); */

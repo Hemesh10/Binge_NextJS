@@ -1,16 +1,27 @@
 {
   "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/movie/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/css/app/movie/[id]/page.css",
+      "static/chunks/app/movie/[id]/page.js"
+    ],
+    "/movie/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/movie/loading.js"
     ],
     "/tv/loading": [
       "static/chunks/webpack.js",
@@ -22,27 +33,6 @@
       "static/chunks/main-app.js",
       "static/css/app/tv/[id]/page.css",
       "static/chunks/app/tv/[id]/page.js"
-    ],
-    "/movie/popular/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/movie/popular/page.js"
-    ],
-    "/movie/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/movie/loading.js"
-    ],
-    "/tv/popular/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/tv/popular/page.js"
-    ],
-    "/movie/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/movie/[id]/page.css",
-      "static/chunks/app/movie/[id]/page.js"
     ]
   }
 }

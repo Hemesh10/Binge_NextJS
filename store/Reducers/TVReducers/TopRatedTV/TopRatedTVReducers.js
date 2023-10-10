@@ -10,7 +10,7 @@ export const TopRatedTVReducers = createSlice({
   initialState,
   reducers: {
     topRatedTV: (state, action) => {
-      state.TopRatedTVData = action.payload;
+      state.TopRatedTVData = action.payload
     },
     changePage: (state, action) => {
       state.TopRatedTVActivePage += action.payload;

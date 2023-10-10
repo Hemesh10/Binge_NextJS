@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Button } from "./ui/button";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -10,20 +9,40 @@ import {
   SelectValue,
 } from "./ui/select";
 import ImageCard from "./ImageCard";
+import { Button } from "./ui/button";
+// import { toast } from "./ui/use-toast";
+// import { asyncPopularMovies } from "@/store/Actions";
+import { popularMovies } from "@/store/Reducers/MoviesReducers/PopularMovies/PopularMoviesReducer";
 import LoadingComponent from "./LoadingComponent";
 
 const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
   const dispatch = useDispatch();
-
   const [sortDefault, setSortDefault] = useState("popularity.desc");
 
   const sortHandler = (event) => {
-    dispatch(sort(event));
-    dispatch(changePage(-activePage + 1));
-    setSortDefault(event);
+    dispatch(popularMovies([]));
+    console.log(event);
+    // dispatch(sort(event));
+    // dispatch(changePage(-activePage + 1));
+    // setSortDefault(event);
   };
 
-  console.log(header);
+  const observer = useRef(null);
+
+  const lastMovie = useCallback(
+    (node) => {
+      if (!node) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          console.log("Intersection happened");
+          dispatch(changePage(1));
+        }
+      });
+      observer.current.observe(node);
+    },
+    [dataArray.length]
+  );
 
   return (
     <section className="wrapper w-full py-6 2xl:px-36 xl:px-24 lg:px-16 px-6">
@@ -93,23 +112,19 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
               </div>
             ) : null}
           </div>
-          <div className="results py-8 flex flex-wrap justify-center gap-5">
-            {dataArray.map((elem) => {
-              return <ImageCard elem={elem} />;
+          <div className="results py-8 flex flex-wrap justify-center  gap-5">
+            {dataArray.map((elem, index) => {
+              return (
+                <div ref={index === dataArray.length - 1 ? lastMovie : null}>
+                  <ImageCard key={elem.id} elem={elem} />
+                </div>
+              );
             })}
           </div>
-          <div className="pagination-sec w-full flex justify-center">
-            <div className="paginate-btns flex items-center gap-2">
-              <Button
-                onClick={() => {
-                  activePage > 1 && dispatch(changePage(-1));
-                }}
-              >
-                Previos
-              </Button>
-              <p className="text-lg pointer-events-none mx-4">{activePage}</p>
-              <Button onClick={() => dispatch(changePage(1))}>Next</Button>
-            </div>
+          <div className="pagination w-full flex justify-center items-center gap-5">
+            <Button onClick={() => dispatch(changePage(1))}>
+              Load More Data
+            </Button>
           </div>
         </>
       ) : (

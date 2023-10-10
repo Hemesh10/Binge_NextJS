@@ -1,6 +1,9 @@
 "use client";
-import { asyncPopularTV} from "@/store/Actions/index"
-import { changePage, popularTV } from "@/store/Reducers/TVReducers/PopularTV/PopularTVReducers";
+import { asyncPopularTV } from "@/store/Actions/index";
+import {
+  changePage,
+  popularTV,
+} from "@/store/Reducers/TVReducers/PopularTV/PopularTVReducers";
 import { sort } from "@/store/Reducers/TVReducers/PopularTV/PopularTVReducers";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -14,8 +17,12 @@ const PopularTVPage = () => {
 
   useEffect(() => {
     dispatch(asyncPopularTV());
-    dispatch(popularTV([]))
+
+    return () => {
+      dispatch(popularTV([]));
+    }
   }, [PopularTVActivePage, sort_by]);
+
   return (
     <RoutePage
       activePage={PopularTVActivePage}
