@@ -27,11 +27,6 @@ export const asyncIndividualTV = (id) => async (dispatch, getState) => {
       )
     );
     dispatch(userScore(Math.floor(data.vote_average * 10)));
-
-    // console.log(data.videos.results);
-    // console.log(getState().IndividualTVReducers);
-
-    // console.log(response);
   } catch (error) {
     console.log(error);
   }

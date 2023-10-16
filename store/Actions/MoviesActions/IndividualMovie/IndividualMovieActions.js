@@ -32,7 +32,6 @@ export const asyncIndividualMovieCastAndCrew =
         `https://api.themoviedb.org/3/movie/${id}/credits?api_key=6bd862bb6372fb6e6174ebc27cc7d8e2`
       );
       dispatch(castAndCrew(data.cast.slice(0, 10)));
-      // console.log(data.cast.slice(0, 10));
     } catch (error) {
       console.log(error);
     }

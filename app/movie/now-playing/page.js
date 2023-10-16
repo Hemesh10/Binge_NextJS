@@ -22,8 +22,6 @@ const NowPlayingMoviesPage = () => {
     };
   }, [NowPlayingMoviesActivePage]);
 
-  console.log(NowPlayingMoviesData);
-
   return (
     <RoutePage
       activePage={NowPlayingMoviesActivePage}

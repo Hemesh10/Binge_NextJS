@@ -32,8 +32,6 @@ const SearchBar = () => {
     router.push(`/search?query=${event.target.search_q.value}`);
   };
 
-  // console.log(searchBarDynamicResults);
-
   return (
     <section className="search-bar absolute z-[100] w-full h-10 outline outline-1 outline-slate-300 bg-white">
       <div className="form-container w-full h-full flex gap-2 border-none 2xl:px-36 xl:px-24 lg:px-16 px-6">

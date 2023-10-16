@@ -12,11 +12,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/movie/[id]/page": [
+    "/tv/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/movie/[id]/page.css",
-      "static/chunks/app/movie/[id]/page.js"
+      "static/css/app/tv/[id]/page.css",
+      "static/chunks/app/tv/[id]/page.js"
     ],
     "/movie/loading": [
       "static/chunks/webpack.js",
@@ -28,11 +28,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/tv/loading.js"
     ],
-    "/tv/[id]/page": [
+    "/movie/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/tv/[id]/page.css",
-      "static/chunks/app/tv/[id]/page.js"
+      "static/css/app/movie/[id]/page.css",
+      "static/chunks/app/movie/[id]/page.js"
     ]
   }
 }

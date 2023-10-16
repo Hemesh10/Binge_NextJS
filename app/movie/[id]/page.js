@@ -36,10 +36,10 @@ const IndividualMovie = ({ params }) => {
 
   const [modal, setModal] = useState(false);
   return (
-    <>
+    <section className="main">
       {Object.keys(IndividualMovieData).length > 0 ? (
-        <section className="wrapper w-full">
-          <section className="backdrop-poster relative w-full min-h-[80vh]">
+        <>
+          <section className="backdrop-poster relative w-full h-screen sm:h-[85vh]">
             <Image
               src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces//${IndividualMovieData.backdrop_path}`}
               alt="Backdrop Cover"
@@ -48,9 +48,9 @@ const IndividualMovie = ({ params }) => {
               className="object-cover"
               priority
             />
-            <div className="backdrop-cover absolute top-0 w-full h-full opacity-40"></div>
-            <div className="details-and-poster flex items-center absolute z-10 top-0 w-full h-full 2xl:pl-36 xl:pl-24 lg:pl-16 pl-6">
-              <div className="poster relative w-[19rem] h-[85%] rounded-lg overflow-hidden">
+            <div className="backdrop-cover absolute z-10 top-0 w-full h-screen sm:h-[85vh] opacity-50"></div>
+            <div className="details-and-poster flex flex-col sm:flex-row justify-around items-center absolute z-10 top-0 w-full h-screen sm:h-[85vh] 2xl:pl-36 xl:pl-24 lg:pl-16">
+              <div className="poster relative w-[14rem] sm:min-w-[20rem] sm:max-w-[22rem] h-[20rem] sm:h-[33rem] rounded-lg overflow-hidden">
                 {IndividualMovieData.poster_path ? (
                   <Image
                     src={`https://www.themoviedb.org/t/p/original/${IndividualMovieData.poster_path}`}
@@ -71,13 +71,13 @@ const IndividualMovie = ({ params }) => {
                   />
                 )}
               </div>
-              <div className="details flex flex-col flex-wrap justify-center max-w-[65vmax] h-full pl-8 gap-6 text-white">
-                <div className="header">
+              <div className="details flex flex-col flex-wrap justify-center sm:max-w-[65vmax] sm:pl-8 gap-4 p-3 sm:p-0 text-white">
+                <div className="header relative space-y-1">
                   <div className="header-title">
-                    <h1 className="text-4xl font-semibold">
+                    <h1 className="text-2xl sm:text-4xl font-semibold leading-tight">
                       <span>{IndividualMovieData.title}</span>
                       {IndividualMovieData.release_date && (
-                        <span className="opacity-75 font-normal ml-4">
+                        <span className="opacity-75 font-normal ml-2 sm:ml-4">
                           ({IndividualMovieData.release_date.split("-")[0]})
                         </span>
                       )}
@@ -94,16 +94,29 @@ const IndividualMovie = ({ params }) => {
                         .map((elem) => elem.name)
                         .join(", ")}
                     </p>
-                    {/* {"•"}
-                    <p>{IndividualMovieData.runtime} mins</p> */}
                   </div>
                 </div>
                 <div className="actions-and-userScore flex items-center gap-6">
-                  <div className="realtive user-score flex items-center gap-4">
-                    <div className="score-progress-bar relative flex items-center justify-center w-16 h-16 rounded-full bg-black">
-                      <p className="text-xl font-medium">
+                  <div className="user-score-mobile sm:hidden">
+                    <div className="score-progress-bar relative flex items-center justify-center w-10 sm:w-16 h-10 sm:h-16 rounded-full bg-black">
+                      <p className="text-xs sm:text-xl font-medium">
                         {movieUserScore}
-                        <sup className="text-xs">%</sup>
+                        <sup className="text-[10px]">%</sup>
+                      </p>
+                      <CircularProgress
+                        variant="determinate"
+                        color="success"
+                        value={movieUserScore}
+                        size={46}
+                        className="absolute"
+                      />
+                    </div>
+                  </div>
+                  <div className="realtive user-score hidden sm:flex items-center gap-2 sm:gap-4">
+                    <div className="score-progress-bar relative flex items-center justify-center w-10 sm:w-16 h-10 sm:h-16 rounded-full bg-black">
+                      <p className="text-xs sm:text-xl font-medium">
+                        {movieUserScore}
+                        <sup className="text-[10px]">%</sup>
                       </p>
                       <CircularProgress
                         variant="determinate"
@@ -120,7 +133,7 @@ const IndividualMovie = ({ params }) => {
                   </div>
                   <div className="trailer-action">
                     <Modal open={modal} onClose={() => setModal(false)}>
-                      <div className="player-wrapper w-[85%] h-[80%] absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 bg-black">
+                      <div className="player-wrapper w-[96%] h-[45%] sm:h-[80%] absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 bg-black">
                         <div className="player-header text-white w-full flex justify-between items-center py-1 px-4">
                           <h1 className="text-lg font-normal">Play Trailer</h1>
                           <Button onClick={() => setModal(false)}>
@@ -147,14 +160,14 @@ const IndividualMovie = ({ params }) => {
                     </span>
                   </div>
                 </div>
-                {IndividualMovieData.tagline ? (
-                  <div className="tagline mt-1">
+                {IndividualMovieData.tagline && (
+                  <div className="tagline xl:mt-1">
                     <h1 className="text-lg font-normal italic opacity-90">
                       {IndividualMovieData.tagline}
                     </h1>
                   </div>
-                ) : null}
-                {IndividualMovieData.overview ? (
+                )}
+                {IndividualMovieData.overview && (
                   <div className="overview">
                     <div className="overview-header">
                       <h1 className="text-xl font-semibold leading-none">
@@ -167,12 +180,12 @@ const IndividualMovie = ({ params }) => {
                       </p>
                     </div>
                   </div>
-                ) : null}
+                )}
               </div>
             </div>
           </section>
-          <section className="cast-and-other-dets flex justify-between w-full py-4">
-            <div className="cast flex flex-col pl-14 py-4 max-w-[75%] gap-2">
+          <section className="cast-and-other-dets flex flex-col sm:flex-row justify-between w-full py-4">
+            <div className="cast flex flex-col pl-0 sm:pl-14 py-4 w-full sm:max-w-[75%] gap-2">
               <div className="header ml-4">
                 <h1 className="text-2xl font-medium">Top Billed Cast</h1>
               </div>
@@ -182,7 +195,7 @@ const IndividualMovie = ({ params }) => {
                     return (
                       <Card
                         key={index}
-                        className="lg:w-[180px] md:w-[180px] sm:w-[180px] max-h-[22rem] flex-shrink-0"
+                        className="w-[150px] sm:w-[180px] max-h-[22rem] flex-shrink-0"
                       >
                         <CardHeader className="lg:h-64 h-60 relative overflow-hidden">
                           {elem.profile_path ? (
@@ -237,9 +250,13 @@ const IndividualMovie = ({ params }) => {
                 )}
               </div>
             </div>
-            <div className="status-sec flex flex-col min-w-[25%] pl-10 pt-16 gap-4">
+            <div className="status-sec flex flex-col min-w-[25%] pl-5 sm:pl-10 pt-2 sm:pt-16 gap-4">
               <div className="header text-xl font-semibold leading-none">
-                Facts
+                <h1 className="break-words">
+                  Some extra info about
+                  <br />
+                  <span className="font-bold">{IndividualMovieData.title}</span>
+                </h1>
               </div>
               <div className="original-name">
                 <h1 className="flex flex-col">
@@ -281,11 +298,11 @@ const IndividualMovie = ({ params }) => {
               </div>
             </div>
           </section>
-        </section>
+        </>
       ) : (
         <LoadingComponent />
       )}
-    </>
+    </section>
   );
 };
 

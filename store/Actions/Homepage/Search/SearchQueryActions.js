@@ -16,6 +16,3 @@ export const asyncSearchQueryData =
       console.log(error);
     }
   };
-
-// console.log(moviesData);
-// console.log(TVData);
