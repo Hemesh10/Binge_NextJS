@@ -13,12 +13,6 @@ export const asyncIndividualTV = (id) => async (dispatch, getState) => {
     );
     dispatch(individualTV(data));
 
-    // const response = await fetch(
-    //   `https://api.themoviedb.org/3/tv/${id}?api_key=6bd862bb6372fb6e6174ebc27cc7d8e2&append_to_response=videos`,
-    //   { cache: "no-store" }
-    // ).then((res) => res.json());
-    // dispatch(individualTV(response));
-
     dispatch(
       addTrailer(
         data.videos.results

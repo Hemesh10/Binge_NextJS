@@ -58,6 +58,7 @@ const SearchResultsPage = ({ searchParams }) => {
             <div className="button">
               <Button
                 onClick={() => activePage > 1 && dispatch(changePage(-1))}
+                className="w-12"
               >
                 Previous
               </Button>

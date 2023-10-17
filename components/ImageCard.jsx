@@ -6,7 +6,7 @@ import { Card, CardHeader, CardFooter, CardTitle } from "./ui/card";
 
 const ImageCard = ({ elem }) => {
   return (
-    <Card className="lg:w-52 sm:w-56 w-full flex-shrink-0">
+    <Card className="lg:w-52 sm:w-56 w-72 flex-shrink-0">
       <Link href={elem.title ? `/movie/${elem.id}` : `/tv/${elem.id}`}>
         <CardHeader className="w-full relative lg:h-80 md:h-96 h-[28rem] overflow-hidden">
           <Image
@@ -25,7 +25,7 @@ const ImageCard = ({ elem }) => {
           />
         </CardHeader>
       </Link>
-      <CardFooter className="relative flex-col items-start gap-2 pt-6">
+      <CardFooter className="relative min-h-[6rem]  flex-col items-start justify-center gap-2 pt-6">
         <div className="score absolute -top-5 left-1 w-10 h-10 flex justify-center items-center rounded-full bg-teal-950">
           <CircularProgress
             variant="determinate"
@@ -43,7 +43,7 @@ const ImageCard = ({ elem }) => {
           </p>
         </div>
         <Link href={elem.title ? `/movie/${elem.id}` : `/tv/${elem.id}`}>
-          <CardTitle className="leading-5 hover:text-blue-400">
+          <CardTitle className=" leading-5 hover:text-blue-400">
             {elem.title ? elem.title : elem.name}
           </CardTitle>
         </Link>

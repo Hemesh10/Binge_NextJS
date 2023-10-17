@@ -3,19 +3,16 @@ import { setSearchQueries } from "@/store/Reducers/HomePage/SearchBar/SearchBarR
 import { asyncDynamicSearchResults } from "@/store/Actions/Homepage/SearchBar/SearchBarActions";
 import { changeSearchBarState } from "@/store/Reducers/HomePage/SearchBar/SearchBarReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const SearchBar = () => {
+const SearchBar = ({ handleSearchBarDisplay }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { searchQueries, searchBarDynamicResults } = useSelector(
     (state) => state.SearchBarReducer
   );
   const { trendingTodayData } = useSelector((state) => state.TrendingReducer);
-
-  const [searchSuggestionDisplay, setSearchSuggestionDisplay] = useState(true);
 
   const changeHandler = (value) => {
     dispatch(setSearchQueries(value));
@@ -48,93 +45,89 @@ const SearchBar = () => {
             className="px-4 py-2 border-none outline-none text-lg italic text-slate-400"
           />
         </form>
-        <button onClick={() => setSearchSuggestionDisplay((prev) => !prev)}>
-          {searchSuggestionDisplay ? "Hide" : "Show"}
-        </button>
+        <button onClick={() => handleSearchBarDisplay(false)}>Close</button>
       </div>
-      {searchSuggestionDisplay && (
-        <div className="search-suggestions w-full border-slate-300 mt-[1px] 2xl:px-36 xl:px-24 lg:px-16 px-6 bg-white">
-          {searchQueries.length > 0 ? (
-            <div className="dynamic-search-result flex flex-col gap-2 py-2">
-              {searchBarDynamicResults.length > 0 ? (
-                searchBarDynamicResults
-                  .filter((elem) => !elem.gender)
-                  .slice(0, 15)
-                  .map((element) => {
-                    return (
-                      <Link
-                        key={element.id}
-                        href={
-                          element.title
-                            ? `/movie/${element.id}`
-                            : `/tv/${element.id}`
-                        }
-                        onClick={onLinkClick}
-                      >
-                        <h1 className="text-base flex gap-2 hover:text-blue-600">
-                          {element.title ? (
-                            <>
-                              <span>
-                                <i className="ri-film-line"></i>
-                              </span>
-                              <span>{element.title} &nbsp;&nbsp;</span>
-                            </>
-                          ) : (
-                            <>
-                              <span>
-                                <i className="ri-tv-line"></i>
-                              </span>
-                              <span>{element.name} &nbsp;&nbsp;</span>
-                            </>
-                          )}
-                        </h1>
-                      </Link>
-                    );
-                  })
-              ) : searchBarDynamicResults.length === 0 && searchQueries.lenght > 0 ? (
-                <p>No Results for this query</p>
-              ) : (
-                <p>Loading...</p>
-              )}
-            </div>
-          ) : (
-            <div className="trending-results">
-              <div className="header">
-                <h1 className="text-xl font-medium flex gap-2 leading-[3rem]">
-                  <span>
-                    <i className="ri-funds-line text-2xl"></i>
-                  </span>
-                  <span>Trending</span>
-                </h1>
-              </div>
-              <div className="list flex flex-col gap-3 pb-2">
-                {trendingTodayData.slice(0, 10).map((listItem) => {
+      <div className="search-suggestions w-full border-slate-300 mt-[1px] 2xl:px-36 xl:px-24 lg:px-16 px-6 bg-white">
+        {searchQueries.length > 0 ? (
+          <div className="dynamic-search-result flex flex-col gap-2 py-2">
+            {searchBarDynamicResults.length > 0 ? (
+              searchBarDynamicResults
+                .filter((elem) => !elem.gender)
+                .slice(0, 15)
+                .map((element) => {
                   return (
                     <Link
-                      key={listItem.id}
+                      key={element.id}
                       href={
-                        listItem.title
-                          ? `/movie/${listItem.id}`
-                          : `/tv/${listItem.id}`
+                        element.title
+                          ? `/movie/${element.id}`
+                          : `/tv/${element.id}`
                       }
                       onClick={onLinkClick}
                     >
                       <h1 className="text-base flex gap-2 hover:text-blue-600">
-                        <span>
-                          <i className="ri-search-line font-semibold"></i>
-                        </span>
-                        <span>
-                          {listItem.title ? listItem.title : listItem.name}
-                        </span>
+                        {element.title ? (
+                          <>
+                            <span>
+                              <i className="ri-film-line"></i>
+                            </span>
+                            <span>{element.title} &nbsp;&nbsp;</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>
+                              <i className="ri-tv-line"></i>
+                            </span>
+                            <span>{element.name} &nbsp;&nbsp;</span>
+                          </>
+                        )}
                       </h1>
                     </Link>
                   );
-                })}
-              </div>
+                })
+            ) : searchBarDynamicResults.length === 0 ? (
+              <p>No Results for this query</p>
+            ) : (
+              <p>Loading...</p>
+            )}
+          </div>
+        ) : (
+          <div className="trending-results">
+            <div className="header">
+              <h1 className="text-xl font-medium flex gap-2 leading-[3rem]">
+                <span>
+                  <i className="ri-funds-line text-2xl"></i>
+                </span>
+                <span>Trending</span>
+              </h1>
             </div>
-          )}
-        </div>
-      )}
+            <div className="list flex flex-col gap-3 pb-2">
+              {trendingTodayData.slice(0, 10).map((listItem) => {
+                return (
+                  <Link
+                    key={listItem.id}
+                    href={
+                      listItem.title
+                        ? `/movie/${listItem.id}`
+                        : `/tv/${listItem.id}`
+                    }
+                    onClick={onLinkClick}
+                  >
+                    <h1 className="text-base flex gap-2 hover:text-blue-600">
+                      <span>
+                        <i className="ri-search-line font-semibold"></i>
+                      </span>
+                      <span>
+                        {listItem.title ? listItem.title : listItem.name}
+                      </span>
+                    </h1>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </div>
     </section>
   );
 };

@@ -10,7 +10,7 @@ export const NowPlayingMoviesReducers = createSlice({
   initialState,
   reducers: {
     nowPlayingMovies: (state, action) => {
-      state.NowPlayingMoviesData = action.payload
+      state.NowPlayingMoviesData = [...state.NowPlayingMoviesData, ...action.payload]
     },
     changePage: (state, action) => {
       state.NowPlayingMoviesActivePage += action.payload;

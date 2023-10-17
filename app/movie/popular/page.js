@@ -2,7 +2,6 @@
 import { asyncPopularMovies } from "@/store/Actions/index";
 import {
   changePage,
-  popularMovies,
 } from "@/store/Reducers/MoviesReducers/PopularMovies/PopularMoviesReducer";
 import { sort } from "@/store/Reducers/MoviesReducers/PopularMovies/PopularMoviesReducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,12 +16,6 @@ const PopularMoviesPage = () => {
 
   useEffect(() => {
     dispatch(asyncPopularMovies());
-    // return () => {
-    //   dispatch(
-    //     changePage(-PopularMoviesActivePage + 1)
-    //   );
-    //   console.log("Component unmounted!"); //why this is happening???
-    // };
   }, [PopularMoviesActivePage, sort_by]);
 
   return (

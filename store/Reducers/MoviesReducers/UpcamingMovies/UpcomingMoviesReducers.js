@@ -10,7 +10,7 @@ export const UpcomingMoviesReducers = createSlice({
   initialState,
   reducers: {
     upcomingMovies: (state, action) => {
-      state.UpcomingMoviesData = action.payload;
+      state.UpcomingMoviesData = [...state.UpcomingMoviesData, ...action.payload];
     },
     changePage: (state, action) => {
       state.UpcomingMoviesActivePage += action.payload;

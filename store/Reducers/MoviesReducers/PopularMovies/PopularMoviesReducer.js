@@ -6,6 +6,8 @@ const initialState = {
   sort_by: "popularity.desc",
 };
 
+import { sortFlag } from "@/components/RoutePage";
+
 export const PopularMoviesReducer = createSlice({
   name: "popularMoviesSlice",
   initialState,

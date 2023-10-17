@@ -10,7 +10,7 @@ export const OnTheAirTVReducers = createSlice({
   initialState,
   reducers: {
     onAirTV: (state, action) => {
-      state.OnAirTVData = action.payload
+      state.OnAirTVData = [...state.OnAirTVData, ...action.payload];
     },
     changePage: (state, action) => {
       state.OnAirTVActivePage += action.payload;
