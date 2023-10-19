@@ -29,7 +29,12 @@ const SearchResultsPage = ({ searchParams }) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    router.push(`/search?query=${event.target.search_q.value}`);
+    if (event.target.search_q.value.length <= 0) {
+      alert("Bakchodi mat kr");
+    } else {
+      dispatch(changePage(-activePage + 1));
+      router.push(`/search?query=${event.target.search_q.value}`);
+    }
   };
 
   const changeHandler = (event) => {
@@ -48,6 +53,7 @@ const SearchResultsPage = ({ searchParams }) => {
   };
 
   useEffect(() => {
+    //
     dispatch(asyncSearchQueryData(searchParams.query, activePage));
     setShowSuggestions(false);
     window.scrollTo({
@@ -122,10 +128,13 @@ const SearchResultsPage = ({ searchParams }) => {
       )}
       <section className="wrapper flex flex-col 2xl:px-36 xl:px-24 lg:px-16 px-2 py-4 gap-4">
         <div className="results-display-seaction flex flex-col gap-6">
-          {searchQueryData.length > 0 &&
+          {searchQueryData.length > 0 ? (
             searchQueryData.map((elem, index) => {
               return <SearchResultCard elem={elem} index={index} />;
-            })}
+            })
+          ) : (
+            <h1>No data available for query '{searchParams.query}'</h1>
+          )}
         </div>
         {searchQueryData.length > 0 && (
           <div className="paginate w-full h-16 mt-5 flex justify-center items-center gap-4">

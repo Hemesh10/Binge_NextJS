@@ -11,7 +11,7 @@ const SearchBar = ({ handleSearchBarDisplay }) => {
   const dispatch = useDispatch();
   const { searchQueries, searchBarDynamicResults } = useSelector(
     (state) => state.SearchBarReducer
-  );  
+  );
   const { trendingTodayData } = useSelector((state) => state.TrendingReducer);
 
   const changeHandler = (value) => {
@@ -26,7 +26,12 @@ const SearchBar = ({ handleSearchBarDisplay }) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    router.push(`/search?query=${event.target.search_q.value}`);
+    if (event.target.search_q.value.length <= 0) {
+      alert("Bakchodi mat kr");
+    } else {
+      handleSearchBarDisplay(false);
+      router.push(`/search?query=${event.target.search_q.value}`);
+    }
   };
 
   return (
@@ -50,7 +55,7 @@ const SearchBar = ({ handleSearchBarDisplay }) => {
       <div className="search-suggestions w-full border-slate-300 mt-[1px] 2xl:px-36 xl:px-24 lg:px-16 px-6 bg-white">
         {searchQueries.length > 0 ? (
           <div className="dynamic-search-result flex flex-col gap-2 py-2">
-            {searchBarDynamicResults.length > 0 ? (
+            {searchBarDynamicResults.length > 0 &&
               searchBarDynamicResults
                 .filter((elem) => !elem.gender)
                 .slice(0, 15)
@@ -84,12 +89,7 @@ const SearchBar = ({ handleSearchBarDisplay }) => {
                       </h1>
                     </Link>
                   );
-                })
-            ) : searchBarDynamicResults.length === 0 ? (
-              <p>No Results for this query</p>
-            ) : (
-              <p>Loading...</p>
-            )}
+                })}
           </div>
         ) : (
           <div className="trending-results">

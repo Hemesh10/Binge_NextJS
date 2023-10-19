@@ -132,7 +132,7 @@ const IndividualTV = ({ params }) => {
                     </div>
                     <div className="trailer-action">
                       <Modal open={modal} onClose={() => setModal(false)}>
-                        <div className="player-wrapper w-[96%] sm:w-[85%] h-[45%] sm:min-h-[85%] absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 bg-black">
+                        <div className="player-wrapper w-[96%] sm:w-[85%] h-[45%] sm:h-[75%] absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 bg-black">
                           <div className="player-header text-white w-full flex justify-between items-center py-1 px-4">
                             <h1 className="text-lg font-normal">
                               Play Trailer
@@ -257,7 +257,7 @@ const IndividualTV = ({ params }) => {
                     />
                   ) : (
                     <h1 className="text-lg font-medium">
-                      No Cast Information Available for this movie 😕
+                      No Information Unavailable 😕
                     </h1>
                   )}
                 </div>
