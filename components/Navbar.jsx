@@ -128,7 +128,7 @@ const Navbar = () => {
         <div className="right">
           <Link href={"/"} className="flex gap-2 items-baseline">
             <h1 className="text-2xl font-bold tracking-widest bg-clip-text bg-gradient-to-r text-transparent from-green-300 to-sky-400">
-              IMDB
+              AMTDB
             </h1>
             <span className="w-12 h-4 rounded-full bg-gradient-to-r from-green-200 to-sky-500"></span>
           </Link>

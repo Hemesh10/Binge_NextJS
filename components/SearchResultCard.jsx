@@ -4,15 +4,16 @@ import Image from "next/image";
 
 const SearchResultCard = ({ elem, index }) => {
   return (
-    <div className="main-card w-full">
-      <Card className="flex w-full">
-        <CardHeader className="relative 2xl:w-[12%] w-[16%] h-56 bg-slate-100">
+    <div key={index} className="main-card">
+      <Card className="flex h-[180px] sm:h-[220px]">
+        <CardHeader className="relative 2xl:w-[12%] sm:w-[16%] w-[35%] bg-slate-100">
           <Link
             href={
               elem.media_type === "movie"
                 ? `/movie/${elem.id}`
                 : `/tv/${elem.id}`
             }
+            className="relative h-full"
           >
             <Image
               src={
@@ -27,7 +28,7 @@ const SearchResultCard = ({ elem, index }) => {
             />
           </Link>
         </CardHeader>
-        <CardFooter className="2xl:w-[88%] w-[84%] px-5 flex flex-col gap-4 items-start justify-center">
+        <CardFooter className="2xl:w-[88%] sm:w-[84%] w-[65%] px-4 items-start justify-center flex flex-col gap-2 sm:gap-4">
           <div className="title-and-rd">
             <CardTitle>
               <Link
@@ -37,7 +38,7 @@ const SearchResultCard = ({ elem, index }) => {
                     : `/tv/${elem.id}`
                 }
               >
-                <h1 className="text-lg font-semibold hover:text-slate-500">
+                <h1 className="text-base sm:text-lg font-semibold leading-tight hover:text-slate-500">
                   {elem.media_type === "movie" ? elem.title : elem.name}
                 </h1>
               </Link>
@@ -49,7 +50,12 @@ const SearchResultCard = ({ elem, index }) => {
             </p>
           </div>
           <div className="overview">
-            <p className="text-sm font-medium">{elem.overview}</p>
+            <p className="hidden sm:block text-sm font-medium">
+              {elem.overview}
+            </p>
+            <p className="block sm:hidden text-sm font-medium">
+              {elem.overview?.slice(0, 75)}...
+            </p>
           </div>
         </CardFooter>
       </Card>

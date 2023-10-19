@@ -11,7 +11,7 @@ const SearchBar = ({ handleSearchBarDisplay }) => {
   const dispatch = useDispatch();
   const { searchQueries, searchBarDynamicResults } = useSelector(
     (state) => state.SearchBarReducer
-  );
+  );  
   const { trendingTodayData } = useSelector((state) => state.TrendingReducer);
 
   const changeHandler = (value) => {

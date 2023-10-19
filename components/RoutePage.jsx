@@ -21,7 +21,7 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
   const sortHandler = (event) => {
     if (header === "Popular Movies") {
       alert(
-        "This section is still under development. The issuse is that this filter is not working exactly the way it should work when infinite scrolling is being used for loading data. But you can checkout this filter's functionality on /tv/popular (popular tv shows page). But there, I have to use pagination instead of infinite scrolling in order for this filter to work."
+        "This filter is still under development. The issuse is that this filter is not working exactly the way it should work when infinite scrolling is being used for loading data. But you can checkout this filter's functionality on /tv/popular (popular tv shows page). But there, I have to use pagination instead of infinite scrolling in order for this filter to work."
       );
     } else {
       dispatch(sort(event));
@@ -53,7 +53,7 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
         {dataArray.length > 0 ? (
           <>
             <div className="header-and-pagination w-full flex justify-between items-center">
-              <h1 className="text-2xl font-normal">{header}</h1>
+              <h1 className="text-xl font-normal">{header}</h1>
               {header === "Popular Movies" ? (
                 <div className="sort-section flex gap-3">
                   <Select onValueChange={sortHandler} value={sortDefault}>
@@ -91,7 +91,7 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
                     defaultValue={sortDefault}
                   >
                     <SelectTrigger className="min-w-[200px]">
-                      <SelectValue placeholder="Sort" />
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -123,12 +123,12 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
               {dataArray.map((elem, index) => {
                 return (
                   <div
-                  ref={
-                    header != "Popular TV Shows" &&
-                    index === dataArray.length - 1
-                      ? lastMovie
-                      : null
-                  }
+                    ref={
+                      header != "Popular TV Shows" &&
+                      index === dataArray.length - 1
+                        ? lastMovie
+                        : null
+                    }
                   >
                     <ImageCard key={elem.id} elem={elem} />
                   </div>
