@@ -27,15 +27,20 @@ const SearchBar = ({ handleSearchBarDisplay }) => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (event.target.search_q.value.length <= 0) {
-      alert("Bakchodi mat kr");
+      alert("Man! Don't play around");
     } else {
       handleSearchBarDisplay(false);
       router.push(`/search?query=${event.target.search_q.value}`);
     }
   };
 
+  const close = () => {
+    dispatch(setSearchQueries(""));
+    handleSearchBarDisplay(false);
+  }
+
   return (
-    <section className="search-bar absolute z-[100] w-full h-10 outline outline-1 outline-slate-300 bg-white">
+    <section className="search-bar absolute z-[100] w-full h-10 outline outline-1 outline-slate-300 bg-white shadow-lg">
       <div className="form-container w-full h-full flex gap-2 border-none 2xl:px-36 xl:px-24 lg:px-16 px-6">
         <div className="search-icon flex items-center">
           <i className="ri-search-line font-semibold"></i>
@@ -50,11 +55,11 @@ const SearchBar = ({ handleSearchBarDisplay }) => {
             className="px-4 py-2 border-none outline-none text-lg italic text-slate-400"
           />
         </form>
-        <button onClick={() => handleSearchBarDisplay(false)}>Close</button>
+        <button onClick={close}>Close</button>
       </div>
-      <div className="search-suggestions w-full border-slate-300 mt-[1px] 2xl:px-36 xl:px-24 lg:px-16 px-6 bg-white">
+      <div className="search-suggestions w-full border-slate-300 mt-[1px] 2xl:px-36 xl:px-24 lg:px-16 px-6 bg-white shadow-lg">
         {searchQueries.length > 0 ? (
-          <div className="dynamic-search-result flex flex-col gap-2 py-2">
+          <div className="dynamic-search-result flex flex-col gap-2 py-0">
             {searchBarDynamicResults.length > 0 &&
               searchBarDynamicResults
                 .filter((elem) => !elem.gender)

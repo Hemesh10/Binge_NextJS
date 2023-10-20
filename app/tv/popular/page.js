@@ -20,7 +20,7 @@ const PopularTVPage = () => {
 
     return () => {
       dispatch(popularTV([]));
-    }
+    };
   }, [PopularTVActivePage, sort_by]);
 
   return (

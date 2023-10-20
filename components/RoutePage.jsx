@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -38,7 +38,6 @@ const RoutePage = ({ activePage, changePage, dataArray, sort, header }) => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          console.log("Intersection happened");
           dispatch(changePage(1));
         }
       });

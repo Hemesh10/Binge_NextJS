@@ -91,7 +91,7 @@ const SearchResultsPage = ({ searchParams }) => {
         )}
       </div>
       {showSuggestions && searchQueries.length > 0 && (
-        <div className="search-suggestions flex flex-col gap-0 absolute sm:w-[98%] w-full left-1/2 -translate-x-1/2 z-50 space-y-1 2xl:px-36 xl:px-24 lg:px-16 px-2 rounded-lg bg-slate-200">
+        <div className="search-suggestions flex flex-col gap-0 absolute w-full z-50 space-y-1 2xl:px-36 xl:px-24 lg:px-16 px-2 bg-white shadow-md">
           {searchBarDynamicResults
             .filter((elem) => !elem.gender)
             .slice(0, 15)

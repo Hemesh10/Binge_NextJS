@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { changeSearchBarState } from "@/store/Reducers/HomePage/SearchBar/SearchBarReducer";
+import { setSearchQueries } from "@/store/Reducers/HomePage/SearchBar/SearchBarReducer";
 import { useSelector, useDispatch } from "react-redux";
 import SearchBar from "./SearchBar";
 import Link from "next/link";
@@ -25,6 +26,7 @@ const Navbar = () => {
 
   const handleSearchBarDisplay = () => {
     dispatch(changeSearchBarState(!showSearchBar));
+    dispatch(setSearchQueries(""));
   };
 
   return (
