@@ -1,7 +1,7 @@
 {
   "/page": "app/page.js",
-  "/tv/top-rated/page": "app/tv/top-rated/page.js",
   "/tv/airing-today/page": "app/tv/airing-today/page.js",
-  "/tv/popular/page": "app/tv/popular/page.js",
-  "/movie/top-rated/page": "app/movie/top-rated/page.js"
+  "/movie/top-rated/page": "app/movie/top-rated/page.js",
+  "/tv/top-rated/page": "app/tv/top-rated/page.js",
+  "/tv/popular/page": "app/tv/popular/page.js"
 }

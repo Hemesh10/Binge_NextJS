@@ -117,7 +117,7 @@ export default function Home() {
           open={trailerModal}
           onClose={() => setTrailerModal(false) && setTrailerKey("")}
         >
-          <div className="player-wrapper w-[75%] h-[45%] sm:h-[80%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[53%] bg-black">
+          <div className="player-wrapper w-[96%] sm:w-[85%] h-[45%] sm:h-[75%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[53%] bg-black">
             <div className="player-header text-white w-full flex justify-between items-center py-1 px-4">
               <h1 className="text-lg font-normal">Play Trailer</h1>
               <Button onClick={() => setTrailerModal(false)}>
