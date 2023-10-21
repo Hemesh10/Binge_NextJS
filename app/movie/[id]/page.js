@@ -42,7 +42,7 @@ const IndividualMovie = ({ params }) => {
       <section className="main">
         {Object.keys(IndividualMovieData).length > 0 ? (
           <>
-            <section className="backdrop-poster relative w-full h-screen sm:h-[85vh]">
+            <section className="backdrop-poster relative w-full h-screen sm:h-[85vh] bg-blue-800">
               <Image
                 src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces//${IndividualMovieData.backdrop_path}`}
                 alt="Backdrop Cover"
@@ -51,7 +51,7 @@ const IndividualMovie = ({ params }) => {
                 className="object-cover"
                 priority
               />
-              <div className="backdrop-cover absolute z-10 top-0 w-full h-screen sm:h-[85vh] opacity-40"></div>
+              <div className="backdrop-cover absolute z-10 top-0 w-full h-screen sm:h-[85vh] opacity-50"></div>
               <div className="details-and-poster flex flex-col sm:flex-row justify-center items-center absolute z-10 top-0 w-full h-screen sm:h-[85vh] 2xl:pl-36 xl:pl-24 lg:pl-16">
                 <div className="poster relative w-[14rem] sm:min-w-[20rem] sm:max-w-[22rem] h-[20rem] sm:h-[33rem] rounded-lg overflow-hidden mt-2 sm:mt-0">
                   {IndividualMovieData.poster_path ? (
@@ -312,7 +312,7 @@ const IndividualMovie = ({ params }) => {
           <LoadingComponent />
         )}
       </section>
-      {(Object.keys(IndividualMovieData).length > 0 && <Footer />)}
+      {Object.keys(IndividualMovieData).length > 0 && <Footer />}
     </>
   );
 };
