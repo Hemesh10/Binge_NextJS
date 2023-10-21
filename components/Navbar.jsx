@@ -130,7 +130,7 @@ const Navbar = () => {
         <div className="right">
           <Link href={"/"} className="flex gap-2 items-baseline">
             <h1 className="text-2xl font-bold tracking-widest bg-clip-text bg-gradient-to-r text-transparent from-green-300 to-sky-400">
-              ShowScouts
+              BINGE 
             </h1>
             <span className="w-12 h-4 rounded-full bg-gradient-to-r from-green-200 to-sky-500"></span>
           </Link>
@@ -143,9 +143,9 @@ const Navbar = () => {
           <div className="nav-content flex items-center gap-8 text-white">
             <Link href={"/"} className="flex gap-2 items-center">
               <h1 className="text-3xl font-semibold tracking-wide bg-clip-text bg-gradient-to-r text-transparent from-green-300 to-sky-400">
-                ShowScouts
+                BINGE 
               </h1>
-              <span className="w-16 h-5 rounded-full bg-gradient-to-r from-green-200 to-sky-500 translate-y-[2px]"></span>
+              {/* <span className="w-16 h-5 rounded-full bg-gradient-to-r from-green-200 to-sky-500 translate-y-[2px]"></span> */}
             </Link>
             <div className="group z-[999] inline-block relative">
               <button className="text-base font-semibold rounded inline-flex items-center">
