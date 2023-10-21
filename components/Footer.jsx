@@ -5,10 +5,8 @@ const Footer = () => {
     <footer className="w-full flex flex-col sm:flex-row justify-between items-center py-6 sm:py-8 px-3 sm:px-32 gap-8">
       <div className="left flex flex-col items-center gap-2 sm:gap-6">
         <h1 className="text-base sm:text-lg text-white">
-          <span className="text-xl sm:text-2xl font-semibold">A</span>nonymous{" "}
-          <span className="text-xl sm:text-2xl font-semibold">M</span>ovies and{" "}
-          <span className="text-xl sm:text-2xl font-semibold">T</span>elevision{" "}
-          <span className="text-xl sm:text-2xl font-semibold">D</span>atabase
+          <span className="text-xl sm:text-2xl font-semibold">S</span>how{" "}
+          <span className="text-xl sm:text-2xl font-semibold">S</span>couts
         </h1>
         <div className="main-msg text-center">
           <h1 className="text-base sm:text-lg text-white">
