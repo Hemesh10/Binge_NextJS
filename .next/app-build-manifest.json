@@ -12,16 +12,16 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/movie/loading": [
+    "/tv/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/movie/loading.js"
+      "static/css/app/tv/[id]/page.css",
+      "static/chunks/app/tv/[id]/page.js"
     ],
-    "/movie/[id]/page": [
+    "/tv/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/movie/[id]/page.css",
-      "static/chunks/app/movie/[id]/page.js"
+      "static/chunks/app/tv/loading.js"
     ]
   }
 }
