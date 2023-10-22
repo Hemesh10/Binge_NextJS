@@ -257,7 +257,7 @@ const IndividualTV = ({ params }) => {
                     />
                   ) : (
                     <h1 className="text-lg font-medium">
-                      No Information Unavailable 😕
+                      No Information Available 😕
                     </h1>
                   )}
                 </div>
