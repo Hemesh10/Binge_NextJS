@@ -1,6 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Anonymous Movies and TV Database
+## Binge
+An app where you can preview any movies or tv show and also watch its trailer. You can obviously search dynamically for one
 
 ## Getting Started
 
