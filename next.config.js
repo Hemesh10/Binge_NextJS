@@ -3,7 +3,6 @@ const nextConfig = {
   images: {
     domains: ["www.themoviedb.org", "image.tmdb.org"],
     formats: ["image/avif", "image/webp"],
-    unoptimized: true,
   },
 };
 
